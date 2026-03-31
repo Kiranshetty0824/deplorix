@@ -123,36 +123,41 @@ const ServicesSection = () => {
 
       {/* Service Detail Dialog */}
       <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-xl max-h-[85vh] overflow-y-auto">
           {selected && (
             <>
               <DialogHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
-                    <selected.icon size={20} />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center">
+                    <selected.icon size={24} />
                   </div>
-                  <DialogTitle className="text-xl">{selected.title}</DialogTitle>
+                  <div>
+                    <DialogTitle className="text-xl">{selected.title}</DialogTitle>
+                    <DialogDescription className="mt-1">{selected.description}</DialogDescription>
+                  </div>
                 </div>
-                <DialogDescription>{selected.description}</DialogDescription>
               </DialogHeader>
-              <div className="mt-4 space-y-4">
-                <p className="text-sm text-muted-foreground leading-relaxed">{selected.details}</p>
+              <div className="mt-2 space-y-5">
+                <div className="p-4 rounded-xl bg-secondary/50">
+                  <h4 className="text-sm font-semibold text-foreground mb-2">About this service</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{selected.details}</p>
+                </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-2">What's included:</h4>
-                  <ul className="space-y-2">
+                  <h4 className="text-sm font-semibold text-foreground mb-3">What's included:</h4>
+                  <div className="grid grid-cols-2 gap-2">
                     {selected.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-foreground" />
+                      <div key={f} className="flex items-center gap-2 text-sm text-muted-foreground p-2 rounded-lg bg-secondary/30">
+                        <span className="w-1.5 h-1.5 rounded-full bg-foreground shrink-0" />
                         {f}
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
                 <a
                   href={`mailto:deplorixtechnologies@gmail.com?subject=Inquiry about ${selected.title}`}
                   className="inline-flex items-center justify-center w-full rounded-full px-6 py-3 text-sm font-medium bg-foreground text-primary-foreground hover:bg-foreground/90 transition-colors"
                 >
-                  Get in Touch
+                  Get in Touch About {selected.title}
                 </a>
               </div>
             </>
