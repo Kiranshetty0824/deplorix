@@ -3,13 +3,24 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import StartProjectDialog from "./StartProjectDialog";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   const [projectOpen, setProjectOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0" style={{ background: "var(--gradient-subtle)" }} />
+      {/* Hero background image */}
+      <img
+        src={heroBg}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        width={1920}
+        height={1080}
+      />
+      <div className="absolute inset-0 bg-background/85" />
+
+      {/* Floating orbs */}
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-secondary rounded-full blur-3xl opacity-60 animate-float" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl opacity-40 animate-float animate-delay-300" />
 
@@ -69,30 +80,6 @@ const HeroSection = () => {
           >
             Explore Careers
           </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 60, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-20 relative"
-        >
-          <div className="glass-card p-2 md:p-3">
-            <div className="bg-secondary rounded-xl aspect-video flex items-center justify-center overflow-hidden">
-              <div className="grid grid-cols-3 gap-3 p-8 w-full max-w-lg">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8 + i * 0.1 }}
-                    className="bg-background rounded-lg aspect-square shadow-sm border border-border/50"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-foreground/5 blur-3xl rounded-full" />
         </motion.div>
       </div>
 

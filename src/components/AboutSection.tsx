@@ -1,5 +1,6 @@
 import AnimatedSection from "./AnimatedSection";
 import { Zap, Shield, Users } from "lucide-react";
+import aboutTeam from "@/assets/about-team.jpg";
 
 const features = [
   {
@@ -23,18 +24,33 @@ const AboutSection = () => {
   return (
     <section id="solutions" className="section-padding">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-20">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
-            Why DeploriX
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-            Crafted with precision
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            We combine thoughtful design with powerful engineering to build
-            products that make a difference.
-          </p>
-        </AnimatedSection>
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          <AnimatedSection>
+            <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
+              Why DeploriX
+            </span>
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+              Crafted with precision
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
+              We combine thoughtful design with powerful engineering to build
+              products that make a difference.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <div className="glass-card overflow-hidden">
+              <img
+                src={aboutTeam}
+                alt="DeploriX team collaborating in a modern workspace"
+                className="w-full h-auto object-cover rounded-2xl"
+                loading="lazy"
+                width={1024}
+                height={1024}
+              />
+            </div>
+          </AnimatedSection>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {features.map((feature, i) => (

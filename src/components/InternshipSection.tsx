@@ -13,27 +13,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Users,
-  Rocket,
-  CalendarCheck,
-  Compass,
-  Trophy,
-  Briefcase,
-  ArrowRight,
-  Code,
-  Palette,
-  Bug,
-  Server,
-  GitBranch,
-  Linkedin,
-  Award,
-  Target,
+  Users, Rocket, CalendarCheck, Compass, Trophy, Briefcase, ArrowRight,
+  Code, Palette, Bug, Server, GitBranch, Linkedin, Award, Target,
 } from "lucide-react";
+import internshipImg from "@/assets/internship.jpg";
 
 const contentBlocks = [
   {
-    icon: Users,
-    title: "Team-Based Work",
+    icon: Users, title: "Team-Based Work",
     color: "from-blue-500/20 to-cyan-500/20",
     items: [
       { icon: Code, text: "Frontend Developers" },
@@ -43,8 +30,7 @@ const contentBlocks = [
     ],
   },
   {
-    icon: Rocket,
-    title: "Real Project Execution",
+    icon: Rocket, title: "Real Project Execution",
     color: "from-purple-500/20 to-pink-500/20",
     items: [
       { icon: Briefcase, text: "Live client projects" },
@@ -52,8 +38,7 @@ const contentBlocks = [
     ],
   },
   {
-    icon: CalendarCheck,
-    title: "Weekly System",
+    icon: CalendarCheck, title: "Weekly System",
     color: "from-emerald-500/20 to-teal-500/20",
     items: [
       { icon: Users, text: "Team meetings" },
@@ -62,8 +47,7 @@ const contentBlocks = [
     ],
   },
   {
-    icon: Compass,
-    title: "Mentorship",
+    icon: Compass, title: "Mentorship",
     color: "from-amber-500/20 to-orange-500/20",
     items: [
       { icon: Compass, text: "Guided step-by-step" },
@@ -71,8 +55,7 @@ const contentBlocks = [
     ],
   },
   {
-    icon: Trophy,
-    title: "Final Growth",
+    icon: Trophy, title: "Final Growth",
     color: "from-rose-500/20 to-red-500/20",
     items: [
       { icon: Award, text: "Presentation skills" },
@@ -80,8 +63,7 @@ const contentBlocks = [
     ],
   },
   {
-    icon: Briefcase,
-    title: "What You Gain",
+    icon: Briefcase, title: "What You Gain",
     color: "from-indigo-500/20 to-violet-500/20",
     items: [
       { icon: Briefcase, text: "Real experience" },
@@ -104,7 +86,6 @@ const ContentCard = ({ block, index }: { block: typeof contentBlocks[0]; index: 
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       className="group relative glass-card p-6 hover-lift"
     >
-      {/* Glow effect */}
       <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${block.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
       <div className="relative z-10">
         <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500">
@@ -140,17 +121,33 @@ const InternshipSection = () => {
   return (
     <section id="resources" className="section-padding bg-surface-elevated">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-foreground text-primary-foreground rounded-full mb-6">
-            Careers & Training
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-            Not a Typical Internship
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Experience real-world projects, team collaboration, and mentorship that transforms you into a industry-ready developer.
-          </p>
-        </AnimatedSection>
+        {/* Header with image */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <AnimatedSection>
+            <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-foreground text-primary-foreground rounded-full mb-6">
+              Careers & Training
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+              Not a Typical Internship
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+              Experience real-world projects, team collaboration, and mentorship that transforms you into an industry-ready developer.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <div className="glass-card overflow-hidden">
+              <img
+                src={internshipImg}
+                alt="Interns collaborating in a mentorship session"
+                className="w-full h-auto object-cover rounded-2xl"
+                loading="lazy"
+                width={1280}
+                height={854}
+              />
+            </div>
+          </AnimatedSection>
+        </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {contentBlocks.map((block, i) => (
@@ -158,7 +155,6 @@ const InternshipSection = () => {
           ))}
         </div>
 
-        {/* Important Note */}
         <AnimatedSection delay={0.3}>
           <div className="glass-card p-8 text-center max-w-2xl mx-auto mb-10">
             <p className="text-sm text-muted-foreground italic">
@@ -179,7 +175,6 @@ const InternshipSection = () => {
         </AnimatedSection>
       </div>
 
-      {/* Apply Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
@@ -191,41 +186,19 @@ const InternshipSection = () => {
           <div className="space-y-4 mt-4">
             <div>
               <Label htmlFor="intern-name">Full Name</Label>
-              <Input
-                id="intern-name"
-                placeholder="Your full name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-              />
+              <Input id="intern-name" placeholder="Your full name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
             </div>
             <div>
               <Label htmlFor="intern-email">Email Address</Label>
-              <Input
-                id="intern-email"
-                type="email"
-                placeholder="you@example.com"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-              />
+              <Input id="intern-email" type="email" placeholder="you@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
             </div>
             <div>
               <Label htmlFor="intern-phone">Phone Number</Label>
-              <Input
-                id="intern-phone"
-                type="tel"
-                placeholder="+91 XXXXX XXXXX"
-                value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              />
+              <Input id="intern-phone" type="tel" placeholder="+91 XXXXX XXXXX" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
             </div>
             <div>
               <Label htmlFor="intern-college">College Name</Label>
-              <Input
-                id="intern-college"
-                placeholder="Your college name"
-                value={form.college}
-                onChange={(e) => setForm({ ...form, college: e.target.value })}
-              />
+              <Input id="intern-college" placeholder="Your college name" value={form.college} onChange={(e) => setForm({ ...form, college: e.target.value })} />
             </div>
             <Button onClick={handleApply} className="w-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college}>
               Submit Application
