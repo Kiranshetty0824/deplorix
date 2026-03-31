@@ -1,14 +1,15 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import StartProjectDialog from "./StartProjectDialog";
 
 const HeroSection = () => {
+  const [projectOpen, setProjectOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle gradient background */}
       <div className="absolute inset-0" style={{ background: "var(--gradient-subtle)" }} />
-
-      {/* Floating orbs */}
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-secondary rounded-full blur-3xl opacity-60 animate-float" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl opacity-40 animate-float animate-delay-300" />
 
@@ -52,15 +53,24 @@ const HeroSection = () => {
           transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button variant="hero" size="lg" className="text-base px-8 py-6 gap-2">
+          <Button
+            variant="hero"
+            size="lg"
+            className="text-base px-8 py-6 gap-2"
+            onClick={() => setProjectOpen(true)}
+          >
             Start a Project <ArrowRight size={18} />
           </Button>
-          <Button variant="hero-outline" size="lg" className="text-base px-8 py-6">
+          <Button
+            variant="hero-outline"
+            size="lg"
+            className="text-base px-8 py-6"
+            onClick={() => document.getElementById("resources")?.scrollIntoView({ behavior: "smooth" })}
+          >
             Explore Careers
           </Button>
         </motion.div>
 
-        {/* Hero visual */}
         <motion.div
           initial={{ opacity: 0, y: 60, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -82,10 +92,11 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
-          {/* Glow underneath */}
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-foreground/5 blur-3xl rounded-full" />
         </motion.div>
       </div>
+
+      <StartProjectDialog open={projectOpen} onOpenChange={setProjectOpen} />
     </section>
   );
 };
