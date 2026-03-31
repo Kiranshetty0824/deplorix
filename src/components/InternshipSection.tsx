@@ -1,72 +1,238 @@
+import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import AnimatedSection from "./AnimatedSection";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Code, Rocket, ArrowRight } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Users,
+  Rocket,
+  CalendarCheck,
+  Compass,
+  Trophy,
+  Briefcase,
+  ArrowRight,
+  Code,
+  Palette,
+  Bug,
+  Server,
+  GitBranch,
+  Linkedin,
+  Award,
+  Target,
+} from "lucide-react";
 
-const perks = [
-  { icon: Code, text: "Hands-on real-world projects" },
-  { icon: GraduationCap, text: "Mentorship from senior engineers" },
-  { icon: Rocket, text: "Career-ready portfolio on completion" },
+const contentBlocks = [
+  {
+    icon: Users,
+    title: "Team-Based Work",
+    color: "from-blue-500/20 to-cyan-500/20",
+    items: [
+      { icon: Code, text: "Frontend Developers" },
+      { icon: Server, text: "Backend Developers" },
+      { icon: Palette, text: "UI/UX Designers" },
+      { icon: Bug, text: "Testers" },
+    ],
+  },
+  {
+    icon: Rocket,
+    title: "Real Project Execution",
+    color: "from-purple-500/20 to-pink-500/20",
+    items: [
+      { icon: Briefcase, text: "Live client projects" },
+      { icon: GitBranch, text: "Product development" },
+    ],
+  },
+  {
+    icon: CalendarCheck,
+    title: "Weekly System",
+    color: "from-emerald-500/20 to-teal-500/20",
+    items: [
+      { icon: Users, text: "Team meetings" },
+      { icon: Target, text: "Progress reviews" },
+      { icon: CalendarCheck, text: "Regular feedback" },
+    ],
+  },
+  {
+    icon: Compass,
+    title: "Mentorship",
+    color: "from-amber-500/20 to-orange-500/20",
+    items: [
+      { icon: Compass, text: "Guided step-by-step" },
+      { icon: Target, text: "Regular monitoring" },
+    ],
+  },
+  {
+    icon: Trophy,
+    title: "Final Growth",
+    color: "from-rose-500/20 to-red-500/20",
+    items: [
+      { icon: Award, text: "Presentation skills" },
+      { icon: Trophy, text: "Confidence building" },
+    ],
+  },
+  {
+    icon: Briefcase,
+    title: "What You Gain",
+    color: "from-indigo-500/20 to-violet-500/20",
+    items: [
+      { icon: Briefcase, text: "Real experience" },
+      { icon: GitBranch, text: "GitHub portfolio" },
+      { icon: Linkedin, text: "LinkedIn growth" },
+      { icon: Award, text: "Placement readiness" },
+    ],
+  },
 ];
 
+const ContentCard = ({ block, index }: { block: typeof contentBlocks[0]; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative glass-card p-6 hover-lift"
+    >
+      {/* Glow effect */}
+      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${block.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className="relative z-10">
+        <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500">
+          <block.icon size={22} />
+        </div>
+        <h3 className="text-lg font-semibold text-foreground mb-4">{block.title}</h3>
+        <ul className="space-y-2.5">
+          {block.items.map((item) => (
+            <li key={item.text} className="flex items-center gap-3 text-sm text-muted-foreground">
+              <item.icon size={15} className="shrink-0" />
+              {item.text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+};
+
 const InternshipSection = () => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", college: "" });
+
+  const handleApply = () => {
+    const subject = encodeURIComponent("Internship Application - DeploriX Technologies");
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCollege: ${form.college}`
+    );
+    window.location.href = `mailto:deplorixtechnologies@gmail.com?subject=${subject}&body=${body}`;
+    setDialogOpen(false);
+  };
+
   return (
     <section id="resources" className="section-padding bg-surface-elevated">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <AnimatedSection>
-            <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
-              Careers & Training
-            </span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-              Launch your career in tech
-            </h2>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Our internship program gives aspiring developers the skills,
-              mentorship, and real-world experience to thrive in the industry.
-            </p>
+        <AnimatedSection className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-foreground text-primary-foreground rounded-full mb-6">
+            Careers & Training
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+            Not a Typical Internship
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Experience real-world projects, team collaboration, and mentorship that transforms you into a industry-ready developer.
+          </p>
+        </AnimatedSection>
 
-            <ul className="mt-8 space-y-4">
-              {perks.map((perk) => (
-                <li key={perk.text} className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
-                    <perk.icon size={18} className="text-foreground" />
-                  </div>
-                  <span className="text-foreground">{perk.text}</span>
-                </li>
-              ))}
-            </ul>
-
-            <Button variant="hero" size="lg" className="mt-10 text-base px-8 py-6 gap-2">
-              Apply Now <ArrowRight size={18} />
-            </Button>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.2}>
-            <div className="glass-card p-8 md:p-10">
-              <div className="space-y-6">
-                {["Web Development", "Mobile Development", "UI/UX Design", "DevOps & Cloud"].map(
-                  (track, i) => (
-                    <div
-                      key={track}
-                      className="flex items-center justify-between p-4 rounded-xl bg-secondary/60 hover:bg-secondary transition-colors duration-300"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="text-sm font-mono text-muted-foreground">
-                          0{i + 1}
-                        </span>
-                        <span className="font-medium text-foreground">{track}</span>
-                      </div>
-                      <span className="text-xs text-muted-foreground px-3 py-1 rounded-full bg-background border border-border">
-                        12 weeks
-                      </span>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </AnimatedSection>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {contentBlocks.map((block, i) => (
+            <ContentCard key={block.title} block={block} index={i} />
+          ))}
         </div>
+
+        {/* Important Note */}
+        <AnimatedSection delay={0.3}>
+          <div className="glass-card p-8 text-center max-w-2xl mx-auto mb-10">
+            <p className="text-sm text-muted-foreground italic">
+              "Internship details and pricing are available only on the Careers page."
+            </p>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.4} className="text-center">
+          <Button
+            variant="hero"
+            size="lg"
+            className="text-base px-10 py-6 gap-2"
+            onClick={() => setDialogOpen(true)}
+          >
+            Apply for Internship <ArrowRight size={18} />
+          </Button>
+        </AnimatedSection>
       </div>
+
+      {/* Apply Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Apply for Internship</DialogTitle>
+            <DialogDescription>
+              Fill in your details and we'll get back to you.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <Label htmlFor="intern-name">Full Name</Label>
+              <Input
+                id="intern-name"
+                placeholder="Your full name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="intern-email">Email Address</Label>
+              <Input
+                id="intern-email"
+                type="email"
+                placeholder="you@example.com"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="intern-phone">Phone Number</Label>
+              <Input
+                id="intern-phone"
+                type="tel"
+                placeholder="+91 XXXXX XXXXX"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="intern-college">College Name</Label>
+              <Input
+                id="intern-college"
+                placeholder="Your college name"
+                value={form.college}
+                onChange={(e) => setForm({ ...form, college: e.target.value })}
+              />
+            </div>
+            <Button onClick={handleApply} className="w-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college}>
+              Submit Application
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
