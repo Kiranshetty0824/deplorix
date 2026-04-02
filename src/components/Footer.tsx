@@ -1,4 +1,5 @@
 import { Linkedin, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
