@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Playfair Display", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,8 +51,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        surface: {
-          elevated: "hsl(var(--surface-elevated))",
+        craft: {
+          blue: "hsl(var(--craft-blue))",
+          yellow: "hsl(var(--craft-yellow))",
+          green: "hsl(var(--craft-green))",
+          mint: "hsl(var(--craft-mint))",
+          purple: "hsl(var(--craft-purple))",
+          peach: "hsl(var(--craft-peach))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
