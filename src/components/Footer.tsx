@@ -80,9 +80,15 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} DeploriX Technologies. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground">
-            deplorixtechnologies@gmail.com
-          </p>
+          <div className="flex items-center gap-4">
+            <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Terms & Conditions
+            </Link>
+            <span className="text-border">|</span>
+            <p className="text-sm text-muted-foreground">
+              deplorixtechnologies@gmail.com
+            </p>
+          </div>
         </div>
       </div>
     </footer>
