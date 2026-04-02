@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 40 33% 97%;
     --foreground: 0 0% 8%;
 
     --card: 0 0% 100%;
@@ -18,32 +18,37 @@
     --primary: 0 0% 8%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
+    --secondary: 40 20% 94%;
     --secondary-foreground: 0 0% 8%;
 
-    --muted: 0 0% 96%;
+    --muted: 40 15% 94%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 0 0% 96%;
+    --accent: 40 20% 94%;
     --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 92%;
-    --input: 0 0% 92%;
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
     --ring: 0 0% 8%;
 
-    --radius: 0.75rem;
+    --radius: 1.25rem;
 
-    /* Custom tokens */
-    --surface-elevated: 0 0% 98%;
-    --surface-glass: 0 0% 100% / 0.72;
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(220 20% 97%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 15% 97%) 100%);
-    --shadow-soft: 0 2px 20px -4px hsl(0 0% 0% / 0.08);
-    --shadow-card: 0 4px 32px -8px hsl(0 0% 0% / 0.1);
-    --shadow-elevated: 0 12px 48px -12px hsl(0 0% 0% / 0.15);
+    /* Craft-inspired pastel section colors */
+    --craft-blue: 210 60% 90%;
+    --craft-yellow: 45 90% 85%;
+    --craft-green: 150 40% 85%;
+    --craft-mint: 160 35% 88%;
+    --craft-purple: 270 40% 92%;
+    --craft-peach: 20 60% 92%;
+
+    /* Shadows */
+    --shadow-soft: 0 2px 20px -4px hsl(0 0% 0% / 0.06);
+    --shadow-card: 0 4px 24px -8px hsl(0 0% 0% / 0.08);
+    --shadow-elevated: 0 12px 48px -12px hsl(0 0% 0% / 0.12);
+    --shadow-float: 0 20px 60px -15px hsl(0 0% 0% / 0.15);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -66,19 +71,29 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
 @layer components {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .craft-card {
+    @apply rounded-3xl overflow-hidden;
+    box-shadow: var(--shadow-card);
+  }
+
   .glass-card {
-    @apply bg-card/70 backdrop-blur-xl border border-border/50 rounded-2xl;
+    @apply bg-card/80 backdrop-blur-xl border border-border/30 rounded-3xl;
     box-shadow: var(--shadow-card);
   }
 
   .section-padding {
-    @apply px-6 md:px-12 lg:px-20 py-20 md:py-32;
+    @apply px-5 md:px-10 lg:px-20 py-16 md:py-28;
   }
 
   .text-gradient {
@@ -91,12 +106,33 @@
   }
 
   .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-elevated);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-float);
   }
 
-  .nav-glass {
-    @apply bg-background/80 backdrop-blur-xl border-b border-border/40;
+  .nav-floating {
+    @apply bg-card/95 backdrop-blur-xl border border-border/50 rounded-full;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Craft-style colored sections */
+  .craft-section-blue {
+    background: hsl(var(--craft-blue));
+  }
+  .craft-section-yellow {
+    background: hsl(var(--craft-yellow));
+  }
+  .craft-section-green {
+    background: hsl(var(--craft-green));
+  }
+  .craft-section-mint {
+    background: hsl(var(--craft-mint));
+  }
+  .craft-section-purple {
+    background: hsl(var(--craft-purple));
+  }
+  .craft-section-peach {
+    background: hsl(var(--craft-peach));
   }
 }
 
