@@ -31,19 +31,19 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-4 left-4 right-4 z-50"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? "nav-glass shadow-sm" : "bg-transparent"
+        }`}
       >
-        <div className={`nav-floating mx-auto max-w-4xl px-4 md:px-6 flex items-center justify-between h-14 transition-all duration-500 ${
-          scrolled ? "shadow-lg" : ""
-        }`}>
-          <a href="#" className="text-lg font-black tracking-tight text-foreground uppercase" style={{ letterSpacing: "0.05em" }}>
-            DeploriX
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
+          <a href="#" className="text-xl font-bold tracking-tight text-foreground">
+            deploriX<span className="text-muted-foreground font-light">technologies</span>
           </a>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
                 key={link.label}
@@ -55,48 +55,51 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-3">
             <Button
-              variant="default"
+              variant="ghost"
               size="sm"
-              className="rounded-full text-xs px-5 font-semibold hidden md:inline-flex"
-              onClick={() => setProjectOpen(true)}
+              className="text-sm text-muted-foreground"
+              onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com"}
             >
+              Contact
+            </Button>
+            <Button variant="hero" size="sm" className="text-sm px-5" onClick={() => setProjectOpen(true)}>
               Get Started
             </Button>
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden text-foreground p-1"
-            >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
           </div>
+
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden text-foreground"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98 }}
-              transition={{ duration: 0.3 }}
-              className="mx-auto max-w-4xl mt-2 bg-card/95 backdrop-blur-xl border border-border/50 rounded-3xl overflow-hidden shadow-lg"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden nav-glass border-t border-border/40 overflow-hidden"
             >
-              <div className="px-6 py-5 flex flex-col gap-3">
+              <div className="px-6 py-6 flex flex-col gap-4">
                 {navLinks.map((link) => (
                   <button
                     key={link.label}
                     onClick={() => handleNavClick(link.href)}
-                    className="text-base text-left text-muted-foreground hover:text-foreground transition-colors py-1"
+                    className="text-base text-left text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </button>
                 ))}
-                <div className="flex gap-3 pt-3 border-t border-border/40">
-                  <Button variant="outline" size="sm" className="flex-1 rounded-full" onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com"}>
+                <div className="flex gap-3 pt-4">
+                  <Button variant="hero-outline" size="sm" className="flex-1" onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com"}>
                     Contact
                   </Button>
-                  <Button size="sm" className="flex-1 rounded-full" onClick={() => { setMobileOpen(false); setProjectOpen(true); }}>
+                  <Button variant="hero" size="sm" className="flex-1" onClick={() => { setMobileOpen(false); setProjectOpen(true); }}>
                     Get Started
                   </Button>
                 </div>

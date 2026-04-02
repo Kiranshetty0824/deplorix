@@ -1,6 +1,6 @@
 import AnimatedSection from "./AnimatedSection";
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Instagram, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Instagram, MapPin, ArrowRight } from "lucide-react";
 
 const contactLinks = [
   {
@@ -25,13 +25,13 @@ const contactLinks = [
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="section-padding">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="section-padding bg-surface-elevated">
+      <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
             Get in Touch
           </span>
-          <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
             Let's connect
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -39,19 +39,19 @@ const ContactSection = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {contactLinks.map((link, i) => (
             <AnimatedSection key={link.label} delay={i * 0.12}>
               <a
                 href={link.href}
                 target={link.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="block bg-card rounded-3xl p-8 hover-lift group text-center h-full border border-border/30"
+                className="block glass-card p-8 hover-lift group text-center h-full"
               >
-                <div className="w-14 h-14 mx-auto rounded-2xl bg-craft-blue flex items-center justify-center mb-5 group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500 shadow-sm">
+                <div className="w-14 h-14 mx-auto rounded-2xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500">
                   <link.icon size={24} />
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">{link.label}</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{link.label}</h3>
                 <p className="text-sm text-muted-foreground break-all">{link.value}</p>
                 <span className="inline-flex items-center gap-1 mt-4 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                   Connect <ArrowRight size={12} />

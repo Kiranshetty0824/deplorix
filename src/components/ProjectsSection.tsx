@@ -26,7 +26,7 @@ const projects = [
       "Integrated with multiple payment gateways for seamless transactions",
       "Responsive design optimized for desktop and tablet use",
     ],
-    process: "We started with in-depth client consultations to understand their financial workflows. The UI/UX was designed in Figma with multiple iterations. Development followed an Agile approach with 2-week sprints. The backend was built with Node.js and MongoDB for scalable data handling.",
+    process: "We started with in-depth client consultations to understand their financial workflows. The UI/UX was designed in Figma with multiple iterations. Development followed an Agile approach with 2-week sprints. The backend was built with Node.js and MongoDB for scalable data handling. Rigorous testing and QA ensured accuracy in all financial calculations before deployment.",
   },
   {
     title: "HealthTrack Mobile",
@@ -44,7 +44,7 @@ const projects = [
       "In-app chat with certified health professionals",
       "Available on both Android and iOS platforms",
     ],
-    process: "Research phase involved studying competitor apps and conducting user surveys. React Native was chosen for cross-platform efficiency. Firebase handled real-time data sync and authentication. The app went through extensive beta testing with 200+ users before the final release.",
+    process: "Research phase involved studying competitor apps and conducting user surveys. We designed user flows prioritizing simplicity and engagement. React Native was chosen for cross-platform efficiency. Firebase handled real-time data sync and authentication. The app went through extensive beta testing with 200+ users before the final release, incorporating feedback at every stage.",
   },
   {
     title: "EduConnect Platform",
@@ -62,13 +62,13 @@ const projects = [
       "Stripe-integrated subscription and one-time payment models",
       "Multi-tenant architecture supporting multiple institutions",
     ],
-    process: "We collaborated closely with educational institutions to understand pain points in online learning. The platform was architected as a multi-tenant SaaS using Next.js for SSR performance. WebRTC powers the live class feature.",
+    process: "We collaborated closely with educational institutions to understand pain points in online learning. The platform was architected as a multi-tenant SaaS using Next.js for SSR performance. WebRTC powers the live class feature. Prisma ORM with PostgreSQL ensures robust data management. The project followed CI/CD practices with automated testing pipelines for reliable deployments.",
   },
   {
     title: "ShopEase Commerce",
     category: "E-Commerce",
     image: internshipImg,
-    description: "A modern e-commerce platform with a focus on user experience, featuring product catalogs, cart management, secure checkout, order tracking, and an admin dashboard.",
+    description: "A modern e-commerce platform with a focus on user experience, featuring product catalogs, cart management, secure checkout, order tracking, and an admin dashboard for store management.",
     techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Razorpay", "Redis", "Cloudinary", "Tailwind CSS"],
     duration: "3.5 Months",
     team: "4 Developers",
@@ -80,7 +80,7 @@ const projects = [
       "Image optimization with Cloudinary for fast page loads",
       "Redis-powered caching for high-performance product listing",
     ],
-    process: "The project kicked off with market research and competitor analysis. The frontend was built with React.js for a smooth SPA experience. Performance optimization using Redis caching and Cloudinary image CDN ensured sub-second page loads.",
+    process: "The project kicked off with market research and competitor analysis. We created detailed wireframes and prototypes in Figma. The frontend was built with React.js for a smooth SPA experience. Node.js and Express handled the backend APIs. MongoDB was chosen for flexible product schema. Performance optimization using Redis caching and Cloudinary image CDN ensured sub-second page loads.",
   },
 ];
 
@@ -91,17 +91,17 @@ const ProjectsSection = () => {
 
   return (
     <section id="pricing" className="section-padding" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        <AnimatedSection className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+      <div className="max-w-7xl mx-auto">
+        <AnimatedSection className="text-center mb-20">
+          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
             Portfolio
           </span>
-          <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
             Selected work
           </h2>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
@@ -111,7 +111,7 @@ const ProjectsSection = () => {
               className="group cursor-pointer"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="bg-card rounded-3xl overflow-hidden hover-lift border border-border/30">
+              <div className="glass-card overflow-hidden hover-lift">
                 <div className="aspect-[4/3] overflow-hidden relative">
                   <img
                     src={project.image}
@@ -122,16 +122,16 @@ const ProjectsSection = () => {
                     height={640}
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-500 flex items-center justify-center">
-                    <span className="text-primary-foreground font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 bg-foreground/60 backdrop-blur-sm px-5 py-2.5 rounded-full">
-                      <ExternalLink className="w-4 h-4" /> Explore Project
+                    <span className="text-background font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2">
+                      <ExternalLink className="w-5 h-5" /> Explore Project
                     </span>
                   </div>
                 </div>
                 <div className="p-6">
-                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     {project.category}
                   </span>
-                  <h3 className="text-xl font-bold text-foreground mt-1">{project.title}</h3>
+                  <h3 className="text-xl font-semibold text-foreground mt-1">{project.title}</h3>
                 </div>
               </div>
             </motion.div>
@@ -144,12 +144,12 @@ const ProjectsSection = () => {
           {selectedProject && (
             <>
               <DialogHeader>
-                <div className="flex items-center gap-3 mb-1 flex-wrap">
-                  <Badge variant="secondary" className="rounded-full">{selectedProject.category}</Badge>
-                  <Badge variant="outline" className="flex items-center gap-1 rounded-full">
+                <div className="flex items-center gap-3 mb-1">
+                  <Badge variant="secondary">{selectedProject.category}</Badge>
+                  <Badge variant="outline" className="flex items-center gap-1">
                     <Clock className="w-3 h-3" /> {selectedProject.duration}
                   </Badge>
-                  <Badge variant="outline" className="flex items-center gap-1 rounded-full">
+                  <Badge variant="outline" className="flex items-center gap-1">
                     <Users className="w-3 h-3" /> {selectedProject.team}
                   </Badge>
                 </div>
@@ -160,6 +160,7 @@ const ProjectsSection = () => {
               </DialogHeader>
 
               <div className="space-y-6 mt-4">
+                {/* Tech Stack */}
                 <div>
                   <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-3">
                     <Code2 className="w-4 h-4 text-primary" /> Tech Stack Used
@@ -168,7 +169,7 @@ const ProjectsSection = () => {
                     {selectedProject.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1.5 text-xs font-medium rounded-full bg-craft-blue text-foreground"
+                        className="px-3 py-1.5 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
                       >
                         {tech}
                       </span>
@@ -176,6 +177,7 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
+                {/* Key Features */}
                 <div>
                   <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-3">
                     <Layers className="w-4 h-4 text-primary" /> Key Features & Highlights
@@ -190,7 +192,8 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-craft-green p-5">
+                {/* Development Process */}
+                <div className="rounded-lg bg-secondary/50 p-4 border border-border">
                   <h4 className="text-sm font-semibold text-foreground mb-2">
                     How We Built It
                   </h4>

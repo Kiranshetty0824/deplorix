@@ -21,6 +21,7 @@ import internshipImg from "@/assets/internship.jpg";
 const contentBlocks = [
   {
     icon: Users, title: "Team-Based Work",
+    color: "from-blue-500/20 to-cyan-500/20",
     items: [
       { icon: Code, text: "Frontend Developers" },
       { icon: Server, text: "Backend Developers" },
@@ -30,6 +31,7 @@ const contentBlocks = [
   },
   {
     icon: Rocket, title: "Real Project Execution",
+    color: "from-purple-500/20 to-pink-500/20",
     items: [
       { icon: Briefcase, text: "Live client projects" },
       { icon: GitBranch, text: "Product development" },
@@ -37,6 +39,7 @@ const contentBlocks = [
   },
   {
     icon: CalendarCheck, title: "Weekly System",
+    color: "from-emerald-500/20 to-teal-500/20",
     items: [
       { icon: Users, text: "Team meetings" },
       { icon: Target, text: "Progress reviews" },
@@ -45,6 +48,7 @@ const contentBlocks = [
   },
   {
     icon: Compass, title: "Mentorship",
+    color: "from-amber-500/20 to-orange-500/20",
     items: [
       { icon: Compass, text: "Guided step-by-step" },
       { icon: Target, text: "Regular monitoring" },
@@ -52,6 +56,7 @@ const contentBlocks = [
   },
   {
     icon: Trophy, title: "Final Growth",
+    color: "from-rose-500/20 to-red-500/20",
     items: [
       { icon: Award, text: "Presentation skills" },
       { icon: Trophy, text: "Confidence building" },
@@ -59,6 +64,7 @@ const contentBlocks = [
   },
   {
     icon: Briefcase, title: "What You Gain",
+    color: "from-indigo-500/20 to-violet-500/20",
     items: [
       { icon: Briefcase, text: "Real experience" },
       { icon: GitBranch, text: "GitHub portfolio" },
@@ -66,15 +72,6 @@ const contentBlocks = [
       { icon: Award, text: "Placement readiness" },
     ],
   },
-];
-
-const blockColors = [
-  "craft-section-blue",
-  "craft-section-yellow",
-  "craft-section-green",
-  "craft-section-peach",
-  "craft-section-purple",
-  "craft-section-mint",
 ];
 
 const ContentCard = ({ block, index }: { block: typeof contentBlocks[0]; index: number }) => {
@@ -87,13 +84,14 @@ const ContentCard = ({ block, index }: { block: typeof contentBlocks[0]; index: 
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group"
+      className="group relative glass-card p-6 hover-lift"
     >
-      <div className={`craft-card ${blockColors[index]} p-6 hover-lift h-full`}>
-        <div className="w-12 h-12 rounded-xl bg-card/70 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500 shadow-sm">
+      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${block.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className="relative z-10">
+        <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500">
           <block.icon size={22} />
         </div>
-        <h3 className="text-lg font-bold text-foreground mb-4">{block.title}</h3>
+        <h3 className="text-lg font-semibold text-foreground mb-4">{block.title}</h3>
         <ul className="space-y-2.5">
           {block.items.map((item) => (
             <li key={item.text} className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -121,53 +119,55 @@ const InternshipSection = () => {
   };
 
   return (
-    <section id="resources" className="section-padding">
-      <div className="max-w-6xl mx-auto">
-        <div className="craft-card craft-section-yellow p-6 md:p-10 mb-16">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-foreground text-primary-foreground rounded-full mb-5">
-                Careers & Training
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-[1.1]">
-                Not a Typical Internship
-              </h2>
-              <p className="mt-5 text-muted-foreground leading-relaxed">
-                Experience real-world projects, team collaboration, and mentorship that transforms you into an industry-ready developer.
-              </p>
-              <div className="mt-6">
-                <Button
-                  variant="outline"
-                  className="rounded-full bg-card/70 backdrop-blur-sm border-border/50"
-                  onClick={() => setDialogOpen(true)}
-                >
-                  Learn more
-                </Button>
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden bg-card shadow-lg">
+    <section id="resources" className="section-padding bg-surface-elevated">
+      <div className="max-w-7xl mx-auto">
+        {/* Header with image */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <AnimatedSection>
+            <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-foreground text-primary-foreground rounded-full mb-6">
+              Careers & Training
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+              Not a Typical Internship
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+              Experience real-world projects, team collaboration, and mentorship that transforms you into an industry-ready developer.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <div className="glass-card overflow-hidden">
               <img
                 src={internshipImg}
                 alt="Interns collaborating in a mentorship session"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-2xl"
                 loading="lazy"
                 width={1280}
                 height={854}
               />
             </div>
-          </div>
+          </AnimatedSection>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {contentBlocks.map((block, i) => (
             <ContentCard key={block.title} block={block} index={i} />
           ))}
         </div>
 
-        <AnimatedSection delay={0.3} className="text-center">
+        <AnimatedSection delay={0.3}>
+          <div className="glass-card p-8 text-center max-w-2xl mx-auto mb-10">
+            <p className="text-sm text-muted-foreground italic">
+              "Internship details and pricing are available only on the Careers page."
+            </p>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.4} className="text-center">
           <Button
+            variant="hero"
             size="lg"
-            className="rounded-full text-base px-10 py-6 gap-2"
+            className="text-base px-10 py-6 gap-2"
             onClick={() => setDialogOpen(true)}
           >
             Apply for Internship <ArrowRight size={18} />
@@ -200,7 +200,7 @@ const InternshipSection = () => {
               <Label htmlFor="intern-college">College Name</Label>
               <Input id="intern-college" placeholder="Your college name" value={form.college} onChange={(e) => setForm({ ...form, college: e.target.value })} />
             </div>
-            <Button onClick={handleApply} className="w-full rounded-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college}>
+            <Button onClick={handleApply} className="w-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college}>
               Submit Application
             </Button>
           </div>

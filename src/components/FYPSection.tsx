@@ -57,10 +57,10 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => 
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative rounded-3xl p-8 flex flex-col h-full transition-all duration-500 ${
+      className={`relative rounded-2xl border p-8 flex flex-col h-full transition-all duration-500 ${
         plan.highlight
-          ? "bg-foreground text-primary-foreground shadow-2xl scale-[1.02]"
-          : "bg-card border border-border/30 hover-lift"
+          ? "bg-foreground text-primary-foreground border-foreground shadow-2xl scale-[1.02]"
+          : "glass-card hover-lift"
       }`}
     >
       {plan.highlight && (
@@ -82,7 +82,7 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => 
         ))}
       </ul>
       <a
-        href={`mailto:deplorixtechnologies@gmail.com?subject=Final Year Project Inquiry - ${plan.name} Plan`}
+        href="mailto:deplorixtechnologies@gmail.com?subject=Final Year Project Inquiry - ${plan.name} Plan"
         className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ${
           plan.highlight
             ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90"
@@ -97,13 +97,13 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => 
 
 const FYPSection = () => {
   return (
-    <section id="fyp" className="section-padding">
-      <div className="max-w-6xl mx-auto">
+    <section id="fyp" className="section-padding bg-background">
+      <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
             Academic Projects
           </span>
-          <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
             Final Year Projects
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -111,11 +111,12 @@ const FYPSection = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
+        {/* Service highlights */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {services.map((s, i) => (
             <AnimatedSection key={s.title} delay={i * 0.1}>
-              <div className="bg-card rounded-3xl p-6 text-center hover-lift h-full border border-border/30">
-                <div className="w-12 h-12 mx-auto rounded-xl bg-craft-yellow/50 flex items-center justify-center mb-4">
+              <div className="glass-card p-6 text-center hover-lift h-full">
+                <div className="w-12 h-12 mx-auto rounded-xl bg-secondary flex items-center justify-center mb-4">
                   <s.icon size={22} className="text-foreground" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">{s.title}</h4>
@@ -125,12 +126,13 @@ const FYPSection = () => {
           ))}
         </div>
 
+        {/* Pricing plans */}
         <AnimatedSection className="text-center mb-12">
           <h3 className="text-2xl md:text-3xl font-bold text-foreground">Choose Your Plan</h3>
           <p className="mt-3 text-muted-foreground">Flexible plans to match your project needs</p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-3 gap-5 lg:gap-6">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {plans.map((plan, i) => (
             <PlanCard key={plan.name} plan={plan} index={i} />
           ))}
