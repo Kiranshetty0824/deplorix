@@ -41,8 +41,8 @@ const contentBlocks = [
   },
   {
     icon: CalendarCheck, title: "Weekly System",
-    bg: "bg-green-50",
-    iconBg: "bg-green-100",
+    bg: "bg-green-50 dark:bg-green-950/40",
+    iconBg: "bg-green-100 dark:bg-green-900/50",
     items: [
       { icon: Users, text: "Team meetings" },
       { icon: Target, text: "Progress reviews" },
