@@ -21,7 +21,8 @@ import internshipImg from "@/assets/internship.jpg";
 const contentBlocks = [
   {
     icon: Users, title: "Team-Based Work",
-    color: "from-blue-500/20 to-cyan-500/20",
+    bg: "bg-blue-50",
+    iconBg: "bg-blue-100",
     items: [
       { icon: Code, text: "Frontend Developers" },
       { icon: Server, text: "Backend Developers" },
@@ -31,7 +32,8 @@ const contentBlocks = [
   },
   {
     icon: Rocket, title: "Real Project Execution",
-    color: "from-purple-500/20 to-pink-500/20",
+    bg: "bg-amber-50",
+    iconBg: "bg-amber-100",
     items: [
       { icon: Briefcase, text: "Live client projects" },
       { icon: GitBranch, text: "Product development" },
@@ -39,7 +41,8 @@ const contentBlocks = [
   },
   {
     icon: CalendarCheck, title: "Weekly System",
-    color: "from-emerald-500/20 to-teal-500/20",
+    bg: "bg-green-50",
+    iconBg: "bg-green-100",
     items: [
       { icon: Users, text: "Team meetings" },
       { icon: Target, text: "Progress reviews" },
@@ -48,7 +51,8 @@ const contentBlocks = [
   },
   {
     icon: Compass, title: "Mentorship",
-    color: "from-amber-500/20 to-orange-500/20",
+    bg: "bg-teal-50",
+    iconBg: "bg-teal-100",
     items: [
       { icon: Compass, text: "Guided step-by-step" },
       { icon: Target, text: "Regular monitoring" },
@@ -56,7 +60,8 @@ const contentBlocks = [
   },
   {
     icon: Trophy, title: "Final Growth",
-    color: "from-rose-500/20 to-red-500/20",
+    bg: "bg-purple-50",
+    iconBg: "bg-purple-100",
     items: [
       { icon: Award, text: "Presentation skills" },
       { icon: Trophy, text: "Confidence building" },
@@ -64,7 +69,8 @@ const contentBlocks = [
   },
   {
     icon: Briefcase, title: "What You Gain",
-    color: "from-indigo-500/20 to-violet-500/20",
+    bg: "bg-orange-50",
+    iconBg: "bg-orange-100",
     items: [
       { icon: Briefcase, text: "Real experience" },
       { icon: GitBranch, text: "GitHub portfolio" },
