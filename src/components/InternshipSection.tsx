@@ -21,8 +21,8 @@ import internshipImg from "@/assets/internship.jpg";
 const contentBlocks = [
   {
     icon: Users, title: "Team-Based Work",
-    bg: "bg-blue-50",
-    iconBg: "bg-blue-100",
+    bg: "bg-blue-50 dark:bg-blue-950/40",
+    iconBg: "bg-blue-100 dark:bg-blue-900/50",
     items: [
       { icon: Code, text: "Frontend Developers" },
       { icon: Server, text: "Backend Developers" },
