@@ -51,8 +51,8 @@ const contentBlocks = [
   },
   {
     icon: Compass, title: "Mentorship",
-    bg: "bg-teal-50",
-    iconBg: "bg-teal-100",
+    bg: "bg-teal-50 dark:bg-teal-950/40",
+    iconBg: "bg-teal-100 dark:bg-teal-900/50",
     items: [
       { icon: Compass, text: "Guided step-by-step" },
       { icon: Target, text: "Regular monitoring" },
