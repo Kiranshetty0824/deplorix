@@ -41,10 +41,10 @@ const plans = [
 ];
 
 const services = [
-  { icon: FileText, title: "Project Development", desc: "End-to-end development of your final year project with modern technologies." },
-  { icon: BookOpen, title: "Documentation", desc: "Professional documentation following university standards and guidelines." },
-  { icon: Compass, title: "Guidance", desc: "Expert mentorship from planning to execution with regular check-ins." },
-  { icon: Presentation, title: "Presentation Support", desc: "Slides, demo prep, and mock presentations for confident delivery." },
+  { icon: FileText, title: "Project Development", desc: "End-to-end development of your final year project with modern technologies.", bg: "bg-blue-50 dark:bg-blue-950/40", iconBg: "bg-blue-100 dark:bg-blue-900/50" },
+  { icon: BookOpen, title: "Documentation", desc: "Professional documentation following university standards and guidelines.", bg: "bg-amber-50 dark:bg-amber-950/40", iconBg: "bg-amber-100 dark:bg-amber-900/50" },
+  { icon: Compass, title: "Guidance", desc: "Expert mentorship from planning to execution with regular check-ins.", bg: "bg-green-50 dark:bg-green-950/40", iconBg: "bg-green-100 dark:bg-green-900/50" },
+  { icon: Presentation, title: "Presentation Support", desc: "Slides, demo prep, and mock presentations for confident delivery.", bg: "bg-purple-50 dark:bg-purple-950/40", iconBg: "bg-purple-100 dark:bg-purple-900/50" },
 ];
 
 const PlanCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => {
@@ -57,10 +57,10 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => 
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative rounded-2xl border p-8 flex flex-col h-full transition-all duration-500 ${
+      className={`relative rounded-3xl border p-8 flex flex-col h-full transition-all duration-500 ${
         plan.highlight
           ? "bg-foreground text-primary-foreground border-foreground shadow-2xl scale-[1.02]"
-          : "glass-card hover-lift"
+          : "bg-teal-50 dark:bg-teal-950/40 hover-lift border-transparent hover:border-border/30"
       }`}
     >
       {plan.highlight && (
@@ -111,12 +111,11 @@ const FYPSection = () => {
           </p>
         </AnimatedSection>
 
-        {/* Service highlights */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {services.map((s, i) => (
             <AnimatedSection key={s.title} delay={i * 0.1}>
-              <div className="glass-card p-6 text-center hover-lift h-full">
-                <div className="w-12 h-12 mx-auto rounded-xl bg-secondary flex items-center justify-center mb-4">
+              <div className={`rounded-3xl p-6 text-center hover-lift h-full border border-transparent hover:border-border/30 transition-all duration-500 ${s.bg}`}>
+                <div className={`w-12 h-12 mx-auto rounded-xl ${s.iconBg} flex items-center justify-center mb-4`}>
                   <s.icon size={22} className="text-foreground" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">{s.title}</h4>
@@ -126,7 +125,6 @@ const FYPSection = () => {
           ))}
         </div>
 
-        {/* Pricing plans */}
         <AnimatedSection className="text-center mb-12">
           <h3 className="text-2xl md:text-3xl font-bold text-foreground">Choose Your Plan</h3>
           <p className="mt-3 text-muted-foreground">Flexible plans to match your project needs</p>

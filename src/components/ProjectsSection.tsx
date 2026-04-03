@@ -9,6 +9,13 @@ import projectApp from "@/assets/project-app.jpg";
 import projectDesign from "@/assets/project-design.jpg";
 import internshipImg from "@/assets/internship.jpg";
 
+const cardColors = [
+  "bg-blue-50 dark:bg-blue-950/40",
+  "bg-amber-50 dark:bg-amber-950/40",
+  "bg-green-50 dark:bg-green-950/40",
+  "bg-purple-50 dark:bg-purple-950/40",
+];
+
 const projects = [
   {
     title: "FinFlow Dashboard",
@@ -111,7 +118,7 @@ const ProjectsSection = () => {
               className="group cursor-pointer"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="glass-card overflow-hidden hover-lift">
+              <div className={`rounded-3xl overflow-hidden hover-lift border border-transparent hover:border-border/30 transition-all duration-500 ${cardColors[i % cardColors.length]}`}>
                 <div className="aspect-[4/3] overflow-hidden relative">
                   <img
                     src={project.image}
@@ -160,7 +167,6 @@ const ProjectsSection = () => {
               </DialogHeader>
 
               <div className="space-y-6 mt-4">
-                {/* Tech Stack */}
                 <div>
                   <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-3">
                     <Code2 className="w-4 h-4 text-primary" /> Tech Stack Used
@@ -177,7 +183,6 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Key Features */}
                 <div>
                   <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-3">
                     <Layers className="w-4 h-4 text-primary" /> Key Features & Highlights
@@ -192,7 +197,6 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Development Process */}
                 <div className="rounded-lg bg-secondary/50 p-4 border border-border">
                   <h4 className="text-sm font-semibold text-foreground mb-2">
                     How We Built It
