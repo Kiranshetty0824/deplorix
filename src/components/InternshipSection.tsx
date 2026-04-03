@@ -69,8 +69,8 @@ const contentBlocks = [
   },
   {
     icon: Briefcase, title: "What You Gain",
-    bg: "bg-orange-50",
-    iconBg: "bg-orange-100",
+    bg: "bg-orange-50 dark:bg-orange-950/40",
+    iconBg: "bg-orange-100 dark:bg-orange-900/50",
     items: [
       { icon: Briefcase, text: "Real experience" },
       { icon: GitBranch, text: "GitHub portfolio" },
