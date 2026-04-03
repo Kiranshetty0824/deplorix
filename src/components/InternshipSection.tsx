@@ -60,8 +60,8 @@ const contentBlocks = [
   },
   {
     icon: Trophy, title: "Final Growth",
-    bg: "bg-purple-50",
-    iconBg: "bg-purple-100",
+    bg: "bg-purple-50 dark:bg-purple-950/40",
+    iconBg: "bg-purple-100 dark:bg-purple-900/50",
     items: [
       { icon: Award, text: "Presentation skills" },
       { icon: Trophy, text: "Confidence building" },
