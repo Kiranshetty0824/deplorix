@@ -11,6 +11,8 @@ const upcomingProjects = [
     description:
       "A comprehensive platform designed to help colleges conduct events seamlessly — from planning and promotion to ticket generation, attendee management, and post-event analytics. Everything your institution needs in one place.",
     tags: ["Event Management", "Ticketing", "Analytics"],
+    bg: "bg-blue-50 dark:bg-blue-950/40",
+    iconBg: "bg-blue-100 dark:bg-blue-900/50",
   },
   {
     icon: Truck,
@@ -19,6 +21,8 @@ const upcomingProjects = [
     description:
       "A smart logistics solution that connects shippers with truck owners. Book trucks on-demand, track shipments in real time, and manage freight operations with ease — built for speed and reliability.",
     tags: ["Logistics", "Booking", "Real-time Tracking"],
+    bg: "bg-amber-50 dark:bg-amber-950/40",
+    iconBg: "bg-amber-100 dark:bg-amber-900/50",
   },
   {
     icon: Landmark,
@@ -27,6 +31,8 @@ const upcomingProjects = [
     description:
       "A modern banking management application tailored for local and community banks. Manage accounts, transactions, loans, and customer records with a secure, intuitive interface designed for efficiency.",
     tags: ["FinTech", "Banking", "Security"],
+    bg: "bg-green-50 dark:bg-green-950/40",
+    iconBg: "bg-green-100 dark:bg-green-900/50",
   },
   {
     icon: Users,
@@ -35,6 +41,8 @@ const upcomingProjects = [
     description:
       "An all-in-one employee management app for tracking attendance, managing payroll, handling leave requests, and monitoring performance — empowering HR teams and managers to work smarter.",
     tags: ["HR Tech", "Payroll", "Performance"],
+    bg: "bg-purple-50 dark:bg-purple-950/40",
+    iconBg: "bg-purple-100 dark:bg-purple-900/50",
   },
 ];
 
@@ -66,10 +74,10 @@ const UpcomingProjectsSection = () => {
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="group"
             >
-              <div className="glass-card p-8 md:p-10 hover-lift h-full flex flex-col">
+              <div className={`rounded-3xl p-8 md:p-10 hover-lift h-full flex flex-col border border-transparent hover:border-border/30 transition-all duration-500 ${project.bg}`}>
                 <div className="flex items-center gap-4 mb-5">
-                  <div className="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500">
-                    <project.icon size={24} />
+                  <div className={`w-14 h-14 rounded-2xl ${project.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                    <project.icon size={24} className="text-foreground" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>

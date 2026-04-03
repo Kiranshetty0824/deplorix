@@ -7,16 +7,22 @@ const features = [
     icon: Zap,
     title: "Lightning Fast",
     description: "We ship products at speed without compromising quality. Agile processes, rapid iteration.",
+    bg: "bg-blue-50 dark:bg-blue-950/40",
+    iconBg: "bg-blue-100 dark:bg-blue-900/50",
   },
   {
     icon: Shield,
     title: "Built to Scale",
     description: "Enterprise-grade architecture from day one. Your product grows with your business.",
+    bg: "bg-green-50 dark:bg-green-950/40",
+    iconBg: "bg-green-100 dark:bg-green-900/50",
   },
   {
     icon: Users,
     title: "Human-Centered",
     description: "Every pixel serves a purpose. We design experiences people genuinely love to use.",
+    bg: "bg-purple-50 dark:bg-purple-950/40",
+    iconBg: "bg-purple-100 dark:bg-purple-900/50",
   },
 ];
 
@@ -39,11 +45,11 @@ const AboutSection = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <div className="glass-card overflow-hidden">
+            <div className="rounded-3xl overflow-hidden border border-border/50" style={{ boxShadow: 'var(--shadow-card)' }}>
               <img
                 src={aboutTeam}
                 alt="DeploriX team collaborating in a modern workspace"
-                className="w-full h-auto object-cover rounded-2xl"
+                className="w-full h-auto object-cover"
                 loading="lazy"
                 width={1024}
                 height={1024}
@@ -55,9 +61,9 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-3 gap-6">
           {features.map((feature, i) => (
             <AnimatedSection key={feature.title} delay={i * 0.15}>
-              <div className="glass-card p-8 md:p-10 hover-lift group h-full">
-                <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-6 group-hover:bg-foreground group-hover:text-primary-foreground transition-colors duration-500">
-                  <feature.icon size={22} />
+              <div className={`rounded-3xl p-8 md:p-10 hover-lift group h-full border border-transparent hover:border-border/30 transition-all duration-500 ${feature.bg}`}>
+                <div className={`w-12 h-12 rounded-xl ${feature.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                  <feature.icon size={22} className="text-foreground" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{feature.description}</p>

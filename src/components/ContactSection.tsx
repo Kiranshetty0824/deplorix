@@ -8,18 +8,24 @@ const contactLinks = [
     label: "Email Us",
     value: "deplorixtechnologies@gmail.com",
     href: "mailto:deplorixtechnologies@gmail.com",
+    bg: "bg-blue-50 dark:bg-blue-950/40",
+    iconBg: "bg-blue-100 dark:bg-blue-900/50",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     value: "DeploriX Technologies",
     href: "https://www.linkedin.com/company/deplorix-technologies/",
+    bg: "bg-teal-50 dark:bg-teal-950/40",
+    iconBg: "bg-teal-100 dark:bg-teal-900/50",
   },
   {
     icon: Instagram,
     label: "Instagram",
     value: "@deplorix.tech",
     href: "https://www.instagram.com/deplorix.tech",
+    bg: "bg-orange-50 dark:bg-orange-950/40",
+    iconBg: "bg-orange-100 dark:bg-orange-900/50",
   },
 ];
 
@@ -46,10 +52,10 @@ const ContactSection = () => {
                 href={link.href}
                 target={link.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="block glass-card p-8 hover-lift group text-center h-full"
+                className={`block rounded-3xl p-8 hover-lift group text-center h-full border border-transparent hover:border-border/30 transition-all duration-500 ${link.bg}`}
               >
-                <div className="w-14 h-14 mx-auto rounded-2xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-foreground group-hover:text-primary-foreground transition-all duration-500">
-                  <link.icon size={24} />
+                <div className={`w-14 h-14 mx-auto rounded-2xl ${link.iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500`}>
+                  <link.icon size={24} className="text-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{link.label}</h3>
                 <p className="text-sm text-muted-foreground break-all">{link.value}</p>
