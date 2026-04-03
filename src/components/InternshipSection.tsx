@@ -32,8 +32,8 @@ const contentBlocks = [
   },
   {
     icon: Rocket, title: "Real Project Execution",
-    bg: "bg-amber-50",
-    iconBg: "bg-amber-100",
+    bg: "bg-amber-50 dark:bg-amber-950/40",
+    iconBg: "bg-amber-100 dark:bg-amber-900/50",
     items: [
       { icon: Briefcase, text: "Live client projects" },
       { icon: GitBranch, text: "Product development" },
