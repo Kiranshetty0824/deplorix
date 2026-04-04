@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import StartProjectDialog from "./StartProjectDialog";
 
 const navLinks = [
@@ -16,26 +16,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return document.documentElement.classList.contains("dark");
-    }
-    return false;
-  });
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
@@ -70,13 +52,6 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-300"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
             <Button
               variant="ghost"
               size="sm"
@@ -91,13 +66,6 @@ const Navbar = () => {
           </div>
 
           <div className="flex md:hidden items-center gap-2">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-all duration-300"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="text-foreground"
