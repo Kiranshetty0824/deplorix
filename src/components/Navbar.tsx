@@ -67,13 +67,6 @@ const Navbar = () => {
 
           <div className="flex md:hidden items-center gap-2">
             <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-all duration-300"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="text-foreground"
             >
