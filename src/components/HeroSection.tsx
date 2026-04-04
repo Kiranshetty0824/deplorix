@@ -1,84 +1,45 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import StartProjectDialog from "./StartProjectDialog";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   const [projectOpen, setProjectOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Hero background image */}
-      <img
-        src={heroBg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        width={1920}
-        height={1080}
-      />
-      <div className="absolute inset-0 bg-background/85" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-sky-100">
+      {/* Sky background with subtle clouds */}
+      <div className="absolute inset-0 bg-gradient-to-b from-sky-200/60 via-sky-100 to-sky-50" />
 
-      {/* Floating orbs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-secondary rounded-full blur-3xl opacity-60 animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl opacity-40 animate-float animate-delay-300" />
+      {/* Decorative cloud shapes */}
+      <div className="absolute top-[15%] left-[10%] w-48 h-20 bg-white/70 rounded-full blur-2xl" />
+      <div className="absolute top-[10%] right-[15%] w-64 h-24 bg-white/60 rounded-full blur-3xl" />
+      <div className="absolute top-[25%] right-[30%] w-36 h-16 bg-white/50 rounded-full blur-2xl" />
+      <div className="absolute bottom-[30%] left-[20%] w-56 h-20 bg-white/40 rounded-full blur-3xl" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="inline-block px-4 py-1.5 mb-8 text-xs font-medium tracking-wider uppercase text-muted-foreground bg-secondary rounded-full border border-border/60">
-            Introducing DeploriX Technologies
-          </span>
-        </motion.div>
-
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-20">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] text-foreground"
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-foreground"
         >
-          Build.
-          <br />
-          Deploy.
-          <br />
-          <span className="text-gradient">Grow.</span>
+          Your partner for apps, websites, and big ideas
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-        >
-          We help businesses build exceptional digital products and empower the
-          next generation of developers through hands-on training.
-        </motion.p>
-
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10"
         >
-          <Button
-            variant="hero"
-            size="lg"
-            className="text-base px-8 py-6 gap-2"
-            onClick={() => setProjectOpen(true)}
-          >
-            Start a Project <ArrowRight size={18} />
-          </Button>
           <Button
             variant="hero-outline"
             size="lg"
-            className="text-base px-8 py-6"
-            onClick={() => document.getElementById("resources")?.scrollIntoView({ behavior: "smooth" })}
+            className="text-base px-8 py-6 bg-background/80 backdrop-blur-sm"
+            onClick={() => setProjectOpen(true)}
           >
-            Explore Careers
+            Start a Project
           </Button>
         </motion.div>
       </div>
