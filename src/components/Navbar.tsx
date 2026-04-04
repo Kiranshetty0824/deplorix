@@ -16,26 +16,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return document.documentElement.classList.contains("dark");
-    }
-    return false;
-  });
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
