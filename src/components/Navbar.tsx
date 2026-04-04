@@ -52,13 +52,6 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-300"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
             <Button
               variant="ghost"
               size="sm"
