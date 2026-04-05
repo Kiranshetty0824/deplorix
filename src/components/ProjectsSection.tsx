@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import projectWeb from "@/assets/project-web.jpg";
 import projectApp from "@/assets/project-app.jpg";
 import projectDesign from "@/assets/project-design.jpg";
-import internshipImg from "@/assets/internship.jpg";
+import projectEcommerce from "@/assets/project-ecommerce.jpg";
 
 const cardColors = [
   "bg-blue-50 dark:bg-blue-950/40",
@@ -74,7 +74,7 @@ const projects = [
   {
     title: "ShopEase Commerce",
     category: "E-Commerce",
-    image: internshipImg,
+    image: projectEcommerce,
     description: "A modern e-commerce platform with a focus on user experience, featuring product catalogs, cart management, secure checkout, order tracking, and an admin dashboard for store management.",
     techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Razorpay", "Redis", "Cloudinary", "Tailwind CSS"],
     duration: "3.5 Months",
