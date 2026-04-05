@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import projectWeb from "@/assets/project-web.jpg";
 import projectApp from "@/assets/project-app.jpg";
 import projectDesign from "@/assets/project-design.jpg";
-import internshipImg from "@/assets/internship.jpg";
+import projectEcommerce from "@/assets/project-ecommerce.jpg";
 
 const cardColors = [
   "bg-blue-50 dark:bg-blue-950/40",
