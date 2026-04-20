@@ -1,6 +1,13 @@
 import { Linkedin, Instagram, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const handleNavClick = (href: string) => {
+  const element = document.querySelector(href);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const columns = [
   {
     title: "PRODUCT",
@@ -56,12 +63,12 @@ const Footer = () => {
                         {link.label}
                       </Link>
                     ) : (
-                      <a
-                        href={link.href}
-                        className="text-sm text-neutral-400 hover:text-white transition-colors duration-300"
+                      <button
+                        onClick={() => handleNavClick(link.href)}
+                        className="text-sm text-neutral-400 hover:text-white transition-colors duration-300 text-left"
                       >
                         {link.label}
-                      </a>
+                      </button>
                     )}
                   </li>
                 ))}
