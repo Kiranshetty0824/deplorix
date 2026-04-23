@@ -111,11 +111,32 @@ const ContentCard = ({ block, index }: { block: typeof contentBlocks[0]; index: 
 const InternshipSection = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", college: "" });
+  const [resume, setResume] = useState<File | null>(null);
+  const [resumeError, setResumeError] = useState<string>("");
+
+  const handleResumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setResumeError("");
+    if (!file) {
+      setResume(null);
+      return;
+    }
+    const allowed = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowed.includes(file.type)) {
+      setResumeError("Please upload a PDF or Word document.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setResumeError("Resume must be under 5MB.");
+      return;
+    }
+    setResume(file);
+  };
 
   const handleApply = () => {
     const subject = encodeURIComponent("Internship Application - DeploriX Technologies");
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCollege: ${form.college}`
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCollege: ${form.college}\n\nResume: ${resume ? `${resume.name} (${(resume.size / 1024).toFixed(1)} KB) — please attach this file before sending.` : "Not provided"}`
     );
     window.location.href = `mailto:deplorixtechnologies@gmail.com?subject=${subject}&body=${body}`;
     setDialogOpen(false);
@@ -203,7 +224,26 @@ const InternshipSection = () => {
               <Label htmlFor="intern-college">College Name</Label>
               <Input id="intern-college" placeholder="Your college name" value={form.college} onChange={(e) => setForm({ ...form, college: e.target.value })} />
             </div>
-            <Button onClick={handleApply} className="w-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college}>
+            <div>
+              <Label htmlFor="intern-resume">Resume (PDF or Word, max 5MB)</Label>
+              <Input
+                id="intern-resume"
+                type="file"
+                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                onChange={handleResumeChange}
+                className="cursor-pointer file:mr-3 file:rounded-md file:border-0 file:bg-foreground file:px-3 file:py-1 file:text-sm file:text-primary-foreground"
+              />
+              {resume && !resumeError && (
+                <p className="mt-1 text-xs text-muted-foreground">Selected: {resume.name}</p>
+              )}
+              {resumeError && (
+                <p className="mt-1 text-xs text-destructive">{resumeError}</p>
+              )}
+              <p className="mt-1 text-xs text-muted-foreground">
+                Note: Your email client will open — please attach the selected file before sending.
+              </p>
+            </div>
+            <Button onClick={handleApply} className="w-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college || !resume || !!resumeError}>
               Submit Application
             </Button>
           </div>
