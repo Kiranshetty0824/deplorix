@@ -23,6 +23,7 @@ function readPngSize(filePath) {
 
 const expected = [
   { file: "favicon.ico", size: null },
+  { file: "favicon.svg", size: null },
   { file: "favicon-16x16.png", size: 16 },
   { file: "favicon-32x32.png", size: 32 },
   { file: "apple-touch-icon.png", size: 180 },
