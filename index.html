@@ -8,10 +8,50 @@
     <meta name="description" content="DeploriX Technologies helps businesses build exceptional digital products and empowers the next generation of developers." />
     <meta name="author" content="DeploriX Technologies" />
 
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <!-- Favicon stack: browsers pick the best supported format.
+         SVG (modern) → PNG (most browsers) → ICO (legacy) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Runtime fallback: if icon files fail to load, inject a generated "D" data URI -->
+    <script>
+      (function () {
+        var FALLBACK =
+          "data:image/svg+xml;utf8," +
+          encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
+              '<rect width="64" height="64" rx="12" fill="#000"/>' +
+              '<text x="50%" y="54%" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" font-weight="800" fill="#fff">D</text>' +
+            "</svg>"
+          );
+        function probe(href, ok, fail) {
+          var img = new Image();
+          img.onload = ok; img.onerror = fail; img.src = href;
+        }
+        function setIcon(href, type) {
+          var links = document.querySelectorAll('link[rel~="icon"]');
+          for (var i = 0; i < links.length; i++) links[i].parentNode.removeChild(links[i]);
+          var l = document.createElement("link");
+          l.rel = "icon"; if (type) l.type = type; l.href = href;
+          document.head.appendChild(l);
+        }
+        probe("/favicon.svg", function () {}, function () {
+          probe("/favicon-32x32.png",
+            function () { setIcon("/favicon-32x32.png", "image/png"); },
+            function () {
+              probe("/favicon.ico",
+                function () { setIcon("/favicon.ico"); },
+                function () { setIcon(FALLBACK, "image/svg+xml"); }
+              );
+            }
+          );
+        });
+      })();
+    </script>
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#000000" />
 
