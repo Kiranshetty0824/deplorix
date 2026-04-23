@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Globe, Smartphone, Palette, Megaphone, Share2 } from "lucide-react";
+import { Globe, Smartphone, Palette, Megaphone, Share2, ShieldCheck } from "lucide-react";
 
 const services = [
   {
