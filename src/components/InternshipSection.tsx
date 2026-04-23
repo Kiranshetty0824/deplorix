@@ -111,11 +111,32 @@ const ContentCard = ({ block, index }: { block: typeof contentBlocks[0]; index: 
 const InternshipSection = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", college: "" });
+  const [resume, setResume] = useState<File | null>(null);
+  const [resumeError, setResumeError] = useState<string>("");
+
+  const handleResumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setResumeError("");
+    if (!file) {
+      setResume(null);
+      return;
+    }
+    const allowed = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowed.includes(file.type)) {
+      setResumeError("Please upload a PDF or Word document.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setResumeError("Resume must be under 5MB.");
+      return;
+    }
+    setResume(file);
+  };
 
   const handleApply = () => {
     const subject = encodeURIComponent("Internship Application - DeploriX Technologies");
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCollege: ${form.college}`
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCollege: ${form.college}\n\nResume: ${resume ? `${resume.name} (${(resume.size / 1024).toFixed(1)} KB) — please attach this file before sending.` : "Not provided"}`
     );
     window.location.href = `mailto:deplorixtechnologies@gmail.com?subject=${subject}&body=${body}`;
     setDialogOpen(false);
