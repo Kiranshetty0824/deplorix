@@ -57,6 +57,15 @@ const services = [
     bg: "bg-orange-50 dark:bg-orange-950/40",
     iconBg: "bg-orange-100 dark:bg-orange-900/50",
   },
+  {
+    icon: ShieldCheck,
+    title: "QA Testing Services",
+    description: "Ship with confidence — rigorous testing that catches bugs before users do.",
+    features: ["Manual & Exploratory Testing", "Automation (Selenium, Cypress, Playwright)", "API & Performance Testing", "Mobile & Cross-Browser Testing", "Bug Tracking & Reporting"],
+    details: "Our QA team ensures your product is reliable, secure, and user-friendly. We offer end-to-end quality assurance — from writing detailed test plans and executing manual test cases to building robust automation suites with Selenium, Cypress, and Playwright. We cover functional, regression, performance, load, security, and usability testing across web and mobile platforms. Using tools like Postman, JMeter, BrowserStack, and Jira, we deliver clear bug reports, reproducible steps, and actionable insights so your team can ship with confidence.",
+    bg: "bg-rose-50 dark:bg-rose-950/40",
+    iconBg: "bg-rose-100 dark:bg-rose-900/50",
+  },
 ];
 
 const ServiceCard = ({
