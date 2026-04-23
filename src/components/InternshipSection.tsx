@@ -224,7 +224,26 @@ const InternshipSection = () => {
               <Label htmlFor="intern-college">College Name</Label>
               <Input id="intern-college" placeholder="Your college name" value={form.college} onChange={(e) => setForm({ ...form, college: e.target.value })} />
             </div>
-            <Button onClick={handleApply} className="w-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college}>
+            <div>
+              <Label htmlFor="intern-resume">Resume (PDF or Word, max 5MB)</Label>
+              <Input
+                id="intern-resume"
+                type="file"
+                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                onChange={handleResumeChange}
+                className="cursor-pointer file:mr-3 file:rounded-md file:border-0 file:bg-foreground file:px-3 file:py-1 file:text-sm file:text-primary-foreground"
+              />
+              {resume && !resumeError && (
+                <p className="mt-1 text-xs text-muted-foreground">Selected: {resume.name}</p>
+              )}
+              {resumeError && (
+                <p className="mt-1 text-xs text-destructive">{resumeError}</p>
+              )}
+              <p className="mt-1 text-xs text-muted-foreground">
+                Note: Your email client will open — please attach the selected file before sending.
+              </p>
+            </div>
+            <Button onClick={handleApply} className="w-full" size="lg" disabled={!form.name || !form.email || !form.phone || !form.college || !resume || !!resumeError}>
               Submit Application
             </Button>
           </div>
