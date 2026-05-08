@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import projectWeb from "@/assets/project-finflow.webp";
 import projectApp from "@/assets/project-healthtrack.webp";
 import projectDesign from "@/assets/project-educonnect.webp";
-import projectEcommerce from "@/assets/project-ecommerce.jpg";
+import projectEcommerce from "@/assets/project-shopease.webp";
 
 const cardColors = [
   "bg-blue-50 dark:bg-blue-950/40",
