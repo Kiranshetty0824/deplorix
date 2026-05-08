@@ -5,7 +5,7 @@ import AnimatedSection from "./AnimatedSection";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import projectWeb from "@/assets/project-finflow.webp";
-import projectApp from "@/assets/project-app.jpg";
+import projectApp from "@/assets/project-healthtrack.webp";
 import projectDesign from "@/assets/project-design.jpg";
 import projectEcommerce from "@/assets/project-ecommerce.jpg";
 
