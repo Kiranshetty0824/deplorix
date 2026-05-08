@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Badge } from "@/components/ui/badge";
 import projectWeb from "@/assets/project-finflow.webp";
 import projectApp from "@/assets/project-healthtrack.webp";
-import projectDesign from "@/assets/project-design.jpg";
+import projectDesign from "@/assets/project-educonnect.webp";
 import projectEcommerce from "@/assets/project-ecommerce.jpg";
 
 const cardColors = [
