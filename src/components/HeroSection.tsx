@@ -35,7 +35,12 @@ const HeroSection = () => {
           </span>
         </motion.div>
 
-        <motion.h1
+        <h1 className="sr-only">
+          Building Innovative Software &amp; AI Solutions for Startups and Students — DeploriX Technologies, Bangalore
+        </h1>
+
+        <motion.div
+          role="presentation"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
@@ -46,7 +51,7 @@ const HeroSection = () => {
           Deploy.
           <br />
           <span className="text-gradient">Grow.</span>
-        </motion.h1>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 40 }}
