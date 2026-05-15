@@ -1,5 +1,6 @@
 import { Linkedin, Instagram, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "@/assets/deplorix-logo.png";
 
 const handleNavClick = (href: string) => {
   const element = document.querySelector(href);
