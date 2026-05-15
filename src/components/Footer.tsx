@@ -99,7 +99,8 @@ const Footer = () => {
         </div>
 
         <div className="mt-16 pt-8 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <a href="#" className="text-lg font-bold tracking-tight text-white">
+          <a href="#" className="flex items-center gap-2 text-lg font-bold tracking-tight text-white">
+            <img src={logo} alt="DeploriX Technologies logo" className="h-8 w-8 rounded-md bg-white p-1 object-contain" width={32} height={32} />
             deploriX<span className="text-neutral-500 font-light">technologies</span>
           </a>
           <p className="text-xs text-neutral-500">
