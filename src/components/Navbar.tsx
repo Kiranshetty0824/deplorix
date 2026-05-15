@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import StartProjectDialog from "./StartProjectDialog";
+import logo from "@/assets/deplorix-logo.png";
 
 const navLinks = [
   { label: "Services", href: "#products" },
