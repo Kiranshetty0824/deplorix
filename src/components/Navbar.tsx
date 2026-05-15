@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import StartProjectDialog from "./StartProjectDialog";
+import logo from "@/assets/deplorix-logo.png";
 
 const navLinks = [
   { label: "Services", href: "#products" },
@@ -35,7 +36,8 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
-          <a href="#" className="text-xl font-bold tracking-tight text-foreground">
+          <a href="#" className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
+            <img src={logo} alt="DeploriX Technologies logo" className="h-8 w-8 rounded-md object-contain" width={32} height={32} />
             deploriX<span className="text-muted-foreground font-light">technologies</span>
           </a>
 
