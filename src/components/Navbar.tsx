@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShieldCheck } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import StartProjectDialog from "./StartProjectDialog";
 import logo from "@/assets/deplorix-logo.png";
 
@@ -17,11 +18,15 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
-
-
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/" + href);
+      return;
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
