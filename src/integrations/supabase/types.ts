@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      internship_certificates: {
+        Row: {
+          certificate_id: string
+          certificate_status: string
+          college_name: string
+          created_at: string
+          domain: string
+          id: string
+          internship_end_date: string
+          internship_start_date: string
+          issue_date: string
+          student_name: string
+          updated_at: string
+        }
+        Insert: {
+          certificate_id: string
+          certificate_status?: string
+          college_name: string
+          created_at?: string
+          domain: string
+          id?: string
+          internship_end_date: string
+          internship_start_date: string
+          issue_date: string
+          student_name: string
+          updated_at?: string
+        }
+        Update: {
+          certificate_id?: string
+          certificate_status?: string
+          college_name?: string
+          created_at?: string
+          domain?: string
+          id?: string
+          internship_end_date?: string
+          internship_start_date?: string
+          issue_date?: string
+          student_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
