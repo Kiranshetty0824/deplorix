@@ -106,6 +106,13 @@ const Navbar = () => {
                     {link.label}
                   </button>
                 ))}
+                <Link
+                  to="/verify"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+                >
+                  <ShieldCheck className="h-4 w-4" /> Verify Certificate
+                </Link>
                 <div className="flex gap-3 pt-4">
                   <Button variant="hero-outline" size="sm" className="flex-1" onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com"}>
                     Contact
