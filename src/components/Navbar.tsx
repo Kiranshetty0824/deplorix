@@ -21,9 +21,18 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const isHome = location.pathname === "/";
+
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    if (location.pathname !== "/") {
+    if (!isHome) {
       navigate("/" + href);
       return;
     }
