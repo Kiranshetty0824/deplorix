@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShieldCheck } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import StartProjectDialog from "./StartProjectDialog";
 import logo from "@/assets/deplorix-logo.png";
 
@@ -17,11 +18,24 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
+  const isHome = location.pathname === "/";
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
+    if (!isHome) {
+      navigate("/" + href);
+      return;
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -32,14 +46,14 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "nav-glass shadow-sm" : "bg-transparent"
+          scrolled || !isHome ? "nav-glass shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
-          <a href="#" className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
+          <Link to="/" className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
             <img src={logo} alt="DeploriX Technologies logo" className="h-8 w-8 rounded-md object-contain" width={32} height={32} />
             deploriX<span className="text-muted-foreground font-light">technologies</span>
-          </a>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
@@ -51,6 +65,12 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+            <Link
+              to="/verify"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 inline-flex items-center gap-1.5"
+            >
+              <ShieldCheck className="h-4 w-4" /> Verify Certificate
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
@@ -95,6 +115,13 @@ const Navbar = () => {
                     {link.label}
                   </button>
                 ))}
+                <Link
+                  to="/verify"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+                >
+                  <ShieldCheck className="h-4 w-4" /> Verify Certificate
+                </Link>
                 <div className="flex gap-3 pt-4">
                   <Button variant="hero-outline" size="sm" className="flex-1" onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com"}>
                     Contact

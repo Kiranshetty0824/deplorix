@@ -6,6 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
+import VerifyCertificate from "./pages/VerifyCertificate.tsx";
+import AdminAuth from "./pages/AdminAuth.tsx";
+import AdminCertificates from "./pages/AdminCertificates.tsx";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +21,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/verify" element={<VerifyCertificate />} />
+          <Route path="/verify/:id" element={<VerifyCertificate />} />
+          <Route path="/admin/login" element={<AdminAuth />} />
+          <Route path="/admin/certificates" element={<AdminCertificates />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
