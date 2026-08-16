@@ -11,12 +11,13 @@ const handleNavClick = (href: string) => {
 
 const columns = [
   {
-    title: "PRODUCT",
+    title: "DIVISIONS",
     links: [
-      { label: "Web Development", href: "#products" },
-      { label: "App Development", href: "#products" },
-      { label: "UI/UX Design", href: "#products" },
-      { label: "Digital Marketing", href: "#products" },
+      { label: "Deplorix Tech", href: "#products" },
+      { label: "Deplorix Digital", href: "#products" },
+      { label: "Deplorix Projects", href: "#products" },
+      { label: "Business Process Solutions", href: "#products" },
+      { label: "Deplorix Training", href: "#products" },
     ],
   },
   {
