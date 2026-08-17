@@ -46,6 +46,18 @@ const ServiceInquiryForm = () => {
       document.getElementById("service-inquiry")?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
     window.addEventListener(INQUIRY_EVENT, handler);
+
+    const param = new URLSearchParams(window.location.search).get("division");
+    if (param && divisions.some((d) => d.id === param)) {
+      setDivisionId(param);
+      if (window.location.hash === "#service-inquiry") {
+        setTimeout(
+          () => document.getElementById("service-inquiry")?.scrollIntoView({ behavior: "smooth", block: "center" }),
+          300
+        );
+      }
+    }
+
     return () => window.removeEventListener(INQUIRY_EVENT, handler);
   }, []);
 
