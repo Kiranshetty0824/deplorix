@@ -1,5 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
-import { Button } from "@/components/ui/button";
+import ServiceInquiryForm from "./ServiceInquiryForm";
 import { Mail, Linkedin, Instagram, MapPin, ArrowRight } from "lucide-react";
 
 const contactLinks = [
@@ -66,6 +66,8 @@ const ContactSection = () => {
             </AnimatedSection>
           ))}
         </div>
+
+        <ServiceInquiryForm />
       </div>
     </section>
   );

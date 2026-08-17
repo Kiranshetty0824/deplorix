@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 
+import DivisionWork from "./pages/DivisionWork.tsx";
 import AdminAuth from "./pages/AdminAuth.tsx";
 import AdminCertificates from "./pages/AdminCertificates.tsx";
 
@@ -20,6 +21,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/work/:divisionId" element={<DivisionWork />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/admin/login" element={<AdminAuth />} />
           <Route path="/admin/certificates" element={<AdminCertificates />} />

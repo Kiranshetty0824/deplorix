@@ -13,11 +13,11 @@ const columns = [
   {
     title: "DIVISIONS",
     links: [
-      { label: "Deplorix Tech", href: "#products" },
-      { label: "Deplorix Digital", href: "#products" },
-      { label: "Deplorix Projects", href: "#products" },
-      { label: "Business Process Solutions", href: "#products" },
-      { label: "Deplorix Training", href: "#products" },
+      { label: "Deplorix Tech", href: "/work/tech", isRoute: true },
+      { label: "Deplorix Digital", href: "/work/digital", isRoute: true },
+      { label: "Deplorix Projects", href: "/work/projects", isRoute: true },
+      { label: "Business Process Solutions", href: "/work/bps", isRoute: true },
+      { label: "Deplorix Training", href: "/work/training", isRoute: true },
     ],
   },
   {
