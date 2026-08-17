@@ -16,9 +16,6 @@ import { divisionExtras } from "@/data/division-extras";
 import { openInquiry } from "./ServiceInquiryForm";
 
 
-const mailto = (subject: string) =>
-  `mailto:deplorixtechnologies@gmail.com?subject=${encodeURIComponent(subject)}`;
-
 const SubServiceCard = ({ item, index }: { item: SubService; index: number }) => {
   const [open, setOpen] = useState(false);
 
@@ -315,12 +312,25 @@ const ServicesSection = () => {
                   <p className="text-sm font-serif italic text-foreground">{selected.cta}</p>
                 </div>
 
-                <a
-                  href={mailto(selected.subject)}
-                  className="inline-flex items-center justify-center gap-2 w-full rounded-full px-6 py-3 text-sm font-semibold bg-foreground text-primary-foreground hover:bg-foreground/90 transition-colors"
-                >
-                  {selected.ctaLabel} <ArrowRight size={16} />
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const id = selected.id;
+                      setSelected(null);
+                      openInquiry(id);
+                    }}
+                    className="inline-flex items-center justify-center gap-2 flex-1 rounded-full px-6 py-3 text-sm font-semibold bg-foreground text-primary-foreground hover:bg-foreground/90 transition-colors"
+                  >
+                    {selected.ctaLabel} <ArrowRight size={16} />
+                  </button>
+                  <Link
+                    to={`/work/${selected.id}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold border border-border/60 text-foreground hover:bg-secondary transition-colors"
+                  >
+                    View case studies
+                  </Link>
+                </div>
               </div>
             </>
           )}
