@@ -69,9 +69,47 @@ const SubServiceCard = ({ item, index }: { item: SubService; index: number }) =>
   );
 };
 
+const ImpactMetrics = ({ divisionId }: { divisionId: string }) => {
+  const extras = divisionExtras[divisionId];
+  if (!extras) return null;
+  return (
+    <div className="grid grid-cols-3 gap-3">
+      {extras.metrics.map((m) => (
+        <div key={m.label} className="rounded-2xl bg-background/70 border border-border/40 p-5 text-center">
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">{m.value}</p>
+          <p className="mt-1 text-xs md:text-sm text-muted-foreground">{m.label}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const Testimonial = ({ divisionId }: { divisionId: string }) => {
+  const extras = divisionExtras[divisionId];
+  if (!extras) return null;
+  return (
+    <blockquote className="rounded-2xl bg-background/70 border border-border/40 p-6">
+      <p className="text-base md:text-lg font-serif italic text-foreground leading-relaxed">
+        “{extras.testimonial.quote}”
+      </p>
+      <footer className="mt-4 text-sm text-muted-foreground">
+        <span className="font-semibold text-foreground">{extras.testimonial.author}</span> — {extras.testimonial.role}
+      </footer>
+    </blockquote>
+  );
+};
+
 const RelevantWork = ({ division }: { division: Division }) => (
   <div>
-    <h4 className="text-sm font-semibold text-foreground mb-3">See relevant work</h4>
+    <div className="flex items-center justify-between gap-4 mb-3">
+      <h4 className="text-sm font-semibold text-foreground">See relevant work</h4>
+      <Link
+        to={`/work/${division.id}`}
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:gap-2.5 transition-all duration-300"
+      >
+        View case studies <ArrowRight size={14} />
+      </Link>
+    </div>
     <div className="grid sm:grid-cols-3 gap-3">
       {division.work.map((w) => (
         <div key={w.title} className="rounded-2xl bg-background/70 border border-border/40 p-4">
@@ -170,17 +208,26 @@ const ServicesSection = () => {
             </div>
 
             <div className="mt-10">
+              <ImpactMetrics divisionId={active.id} />
+            </div>
+
+            <div className="mt-6">
               <RelevantWork division={active} />
+            </div>
+
+            <div className="mt-6">
+              <Testimonial divisionId={active.id} />
             </div>
 
             <div className="mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl bg-background/70 border border-border/40 p-6">
               <p className="text-base font-serif italic text-foreground">{active.cta}</p>
-              <a
-                href={mailto(active.subject)}
+              <button
+                type="button"
+                onClick={() => openInquiry(active.id)}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-foreground text-primary-foreground hover:bg-foreground/90 transition-colors shrink-0"
               >
                 {active.ctaLabel} <ArrowRight size={16} />
-              </a>
+              </button>
             </div>
           </motion.div>
         </AnimatePresence>
