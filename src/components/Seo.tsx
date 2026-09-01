@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 
+type JsonLd = Record<string, unknown>;
+
 type Props = {
   title: string;
   description: string;
   canonical: string;
+  jsonLd?: JsonLd[];
 };
 
 const setMeta = (selector: string, attr: string, value: string, content: string) => {
@@ -17,7 +20,29 @@ const setMeta = (selector: string, attr: string, value: string, content: string)
   return el;
 };
 
-const Seo = ({ title, description, canonical }: Props) => {
+const REQUIRED_FIELDS: Record<string, string[]> = {
+  Organization: ["name", "url"],
+  Service: ["name", "provider", "areaServed"],
+  BreadcrumbList: ["itemListElement"],
+  FAQPage: ["mainEntity"],
+};
+
+/** Dev-only sanity check so malformed structured data shows up in the console. */
+const validateJsonLd = (blocks: JsonLd[]) => {
+  if (!import.meta.env.DEV) return;
+  blocks.forEach((block, i) => {
+    const type = String(block["@type"] ?? "");
+    const warn = (msg: string) => console.warn(`[schema.org] block #${i} (${type || "unknown"}): ${msg}`);
+    if (!block["@context"]) warn("missing @context");
+    if (!type) warn("missing @type");
+    (REQUIRED_FIELDS[type] ?? []).forEach((field) => {
+      if (block[field] === undefined) warn(`missing required property "${field}"`);
+    });
+  });
+  console.info(`[schema.org] validated ${blocks.length} block(s): no further warnings`);
+};
+
+const Seo = ({ title, description, canonical, jsonLd = [] }: Props) => {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = title;
@@ -41,6 +66,19 @@ const Seo = ({ title, description, canonical }: Props) => {
       document.title = prevTitle;
     };
   }, [title, description, canonical]);
+
+  useEffect(() => {
+    if (!jsonLd.length) return;
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.dataset.seoRoute = "true";
+    script.textContent = JSON.stringify(jsonLd.length === 1 ? jsonLd[0] : jsonLd);
+    document.head.appendChild(script);
+    validateJsonLd(jsonLd);
+    return () => {
+      script.remove();
+    };
+  }, [jsonLd]);
 
   return null;
 };
