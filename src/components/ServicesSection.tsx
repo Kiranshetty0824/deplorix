@@ -35,8 +35,8 @@ const SubServiceCard = ({ item, index }: { item: SubService; index: number }) =>
         aria-expanded={open}
       >
         <span>
-          <span className="block text-base font-semibold text-foreground">{item.title}</span>
-          <span className="mt-1 block text-sm text-muted-foreground">{item.summary}</span>
+          <span className={`block ${typo.headingSm}`}>{item.title}</span>
+          <span className={`mt-1 block ${typo.bodySm}`}>{item.summary}</span>
         </span>
         <ChevronDown
           size={18}
@@ -75,8 +75,8 @@ const ImpactMetrics = ({ divisionId }: { divisionId: string }) => {
     <div className="grid grid-cols-3 gap-3">
       {extras.metrics.map((m) => (
         <div key={m.label} className="rounded-2xl bg-background/70 border border-border/40 p-5 text-center">
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">{m.value}</p>
-          <p className="mt-1 text-xs md:text-sm text-muted-foreground">{m.label}</p>
+          <p className={typo.metricValue}>{m.value}</p>
+          <p className={`mt-1 ${typo.metricLabel}`}>{m.label}</p>
         </div>
       ))}
     </div>
@@ -88,10 +88,8 @@ const Testimonial = ({ divisionId }: { divisionId: string }) => {
   if (!extras) return null;
   return (
     <blockquote className="rounded-2xl bg-background/70 border border-border/40 p-6">
-      <p className="text-base md:text-lg font-serif italic text-foreground leading-relaxed">
-        “{extras.testimonial.quote}”
-      </p>
-      <footer className="mt-4 text-sm text-muted-foreground">
+      <p className={typo.quote}>“{extras.testimonial.quote}”</p>
+      <footer className={`mt-4 ${typo.bodySm}`}>
         <span className="font-semibold text-foreground">{extras.testimonial.author}</span> — {extras.testimonial.role}
       </footer>
     </blockquote>
