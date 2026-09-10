@@ -131,13 +131,9 @@ const ServicesSection = () => {
     <section id="products" className="section-padding bg-surface-elevated">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-14">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
-            Our Divisions
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-            Five divisions. One standard.
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <span className={typo.eyebrow}>Our Divisions</span>
+          <h2 className={`mt-4 ${typo.displayLg}`}>Five divisions. One standard.</h2>
+          <p className={`mt-6 ${typo.lead} max-w-2xl mx-auto`}>
             Each division runs its own specialised services — built, staffed, and delivered end-to-end by Deplorix.
           </p>
         </AnimatedSection>
@@ -149,9 +145,12 @@ const ServicesSection = () => {
             return (
               <button
                 key={d.id}
-                onClick={() => setActiveId(d.id)}
-                className={`relative rounded-full px-5 py-2.5 text-sm transition-colors duration-300 ${
-                  isActive ? "text-background font-semibold" : "text-muted-foreground hover:text-foreground font-medium"
+                onClick={() => {
+                  setActiveId(d.id);
+                  trackEvent("division_selector_click", { division: d.id, location: "services_section" });
+                }}
+                className={`relative rounded-full px-5 py-2.5 transition-colors duration-300 ${
+                  isActive ? `text-background ${typo.pillActive}` : `text-muted-foreground hover:text-foreground ${typo.pillIdle}`
                 }`}
               >
                 {isActive && (
@@ -185,14 +184,17 @@ const ServicesSection = () => {
                 <div className={`w-14 h-14 rounded-2xl ${active.iconBg} flex items-center justify-center mb-6`}>
                   <active.icon size={24} className="text-foreground" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">{active.name}</h3>
-                <p className="mt-2 text-base md:text-lg font-serif italic text-foreground/70">{active.tagline}</p>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{active.blurb}</p>
+                <h3 className={typo.displayMd}>{active.name}</h3>
+                <p className={`mt-2 ${typo.tagline}`}>{active.tagline}</p>
+                <p className={`mt-4 ${typo.body}`}>{active.blurb}</p>
               </div>
 
               <button
-                onClick={() => setSelected(active)}
-                className="inline-flex items-center gap-1.5 self-start text-sm font-semibold text-foreground hover:gap-2.5 transition-all duration-300"
+                onClick={() => {
+                  setSelected(active);
+                  trackEvent("proof_block_cta_click", { division: active.id, location: "explore_division" });
+                }}
+                className={`inline-flex items-center gap-1.5 self-start ${typo.link} hover:gap-2.5 transition-all duration-300`}
               >
                 Explore this division
                 <ArrowRight size={16} />
