@@ -99,10 +99,13 @@ const Testimonial = ({ divisionId }: { divisionId: string }) => {
 const RelevantWork = ({ division }: { division: Division }) => (
   <div>
     <div className="flex items-center justify-between gap-4 mb-3">
-      <h4 className="text-sm font-semibold text-foreground">See relevant work</h4>
+      <h4 className={typo.headingXs}>See relevant work</h4>
       <Link
         to={`/work/${division.id}`}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:gap-2.5 transition-all duration-300"
+        onClick={() =>
+          trackEvent("proof_block_cta_click", { division: division.id, location: "services_proof_block" })
+        }
+        className={`inline-flex items-center gap-1.5 ${typo.link} hover:gap-2.5 transition-all duration-300`}
       >
         View case studies <ArrowRight size={14} />
       </Link>
@@ -110,11 +113,9 @@ const RelevantWork = ({ division }: { division: Division }) => (
     <div className="grid sm:grid-cols-3 gap-3">
       {division.work.map((w) => (
         <div key={w.title} className="rounded-2xl bg-background/70 border border-border/40 p-4">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-            {w.type}
-          </span>
-          <p className="mt-1 text-base font-semibold text-foreground">{w.title}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{w.note}</p>
+          <span className={typo.caption}>{w.type}</span>
+          <p className={`mt-1 ${typo.headingSm}`}>{w.title}</p>
+          <p className={`mt-1 ${typo.bodySm}`}>{w.note}</p>
         </div>
       ))}
     </div>
