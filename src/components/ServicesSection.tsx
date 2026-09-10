@@ -223,7 +223,10 @@ const ServicesSection = () => {
               <p className="text-base font-serif italic text-foreground">{active.cta}</p>
               <button
                 type="button"
-                onClick={() => openInquiry(active.id)}
+                onClick={() => {
+                  trackEvent("proof_block_cta_click", { division: active.id, location: "division_cta" });
+                  openInquiry(active.id);
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-foreground text-primary-foreground hover:bg-foreground/90 transition-colors shrink-0"
               >
                 {active.ctaLabel} <ArrowRight size={16} />
