@@ -12,7 +12,6 @@
  * Usage: node scripts/seo-audit.mjs   (writes seo-audit-report.md)
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { globSync } from "node:fs";
 import { execSync } from "node:child_process";
 
 const read = (p) => (existsSync(p) ? readFileSync(p, "utf8") : "");
@@ -31,6 +30,8 @@ const routes = [...app.matchAll(/<Route\s+path="([^"]+)"/g)].map((m) => m[1]);
 const staticRoutes = routes.filter((r) => r !== "*" && !r.includes(":"));
 const dynamicRoutes = routes.filter((r) => r.includes(":"));
 const divisionIds = [...read("src/data/divisions.ts").matchAll(/^\s{4}id: "([^"]+)"/gm)].map((m) => m[1]);
+const INTERNAL_PREFIXES = ["/admin"]; // noindex, intentionally out of the sitemap
+const NOT_FOUND_PATH = "/404"; // served by the catch-all "*" route
 const expandedRoutes = new Set([
   ...staticRoutes,
   ...divisionIds.map((id) => `/work/${id}`),
@@ -53,7 +54,10 @@ const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 if (!sitemap) fail("public/sitemap.xml is missing.");
 else {
   const paths = locs.map((l) => new URL(l).pathname.replace(/\/$/, "") || "/");
-  const missing = [...expandedRoutes].filter((r) => r !== "/404" && !paths.includes(r));
+  const indexable = [...expandedRoutes].filter(
+    (r) => !INTERNAL_PREFIXES.some((p) => r.startsWith(p))
+  );
+  const missing = indexable.filter((r) => !paths.includes(r));
   const stale = paths.filter((p) => p !== "/" && !expandedRoutes.has(p));
   if (missing.length) fail(`Sitemap missing route(s): ${missing.join(", ")}`);
   if (stale.length) fail(`Sitemap contains route(s) not in the app: ${stale.join(", ")}`);
@@ -97,6 +101,7 @@ for (const f of files.filter((f) => f.endsWith(".tsx"))) {
       const re = new RegExp("^" + r.replace(/:[^/]+/g, "[^/]+") + "$");
       return re.test(path);
     });
+    if (path === NOT_FOUND_PATH) continue;
     if (!expandedRoutes.has(path) && !matchesDynamic) linkHits.push(`${f} → ${raw}`);
   }
 }

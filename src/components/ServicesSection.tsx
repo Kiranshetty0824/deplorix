@@ -14,6 +14,8 @@ import { Link } from "react-router-dom";
 import { divisions, type Division, type SubService } from "@/data/divisions";
 import { divisionExtras } from "@/data/division-extras";
 import { openInquiry } from "./ServiceInquiryForm";
+import { type as typo } from "@/lib/typography";
+import { trackEvent } from "@/lib/analytics";
 
 
 const SubServiceCard = ({ item, index }: { item: SubService; index: number }) => {
@@ -33,8 +35,8 @@ const SubServiceCard = ({ item, index }: { item: SubService; index: number }) =>
         aria-expanded={open}
       >
         <span>
-          <span className="block text-base font-semibold text-foreground">{item.title}</span>
-          <span className="mt-1 block text-sm text-muted-foreground">{item.summary}</span>
+          <span className={`block ${typo.headingSm}`}>{item.title}</span>
+          <span className={`mt-1 block ${typo.bodySm}`}>{item.summary}</span>
         </span>
         <ChevronDown
           size={18}
@@ -73,8 +75,8 @@ const ImpactMetrics = ({ divisionId }: { divisionId: string }) => {
     <div className="grid grid-cols-3 gap-3">
       {extras.metrics.map((m) => (
         <div key={m.label} className="rounded-2xl bg-background/70 border border-border/40 p-5 text-center">
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">{m.value}</p>
-          <p className="mt-1 text-xs md:text-sm text-muted-foreground">{m.label}</p>
+          <p className={typo.metricValue}>{m.value}</p>
+          <p className={`mt-1 ${typo.metricLabel}`}>{m.label}</p>
         </div>
       ))}
     </div>
@@ -86,10 +88,8 @@ const Testimonial = ({ divisionId }: { divisionId: string }) => {
   if (!extras) return null;
   return (
     <blockquote className="rounded-2xl bg-background/70 border border-border/40 p-6">
-      <p className="text-base md:text-lg font-serif italic text-foreground leading-relaxed">
-        “{extras.testimonial.quote}”
-      </p>
-      <footer className="mt-4 text-sm text-muted-foreground">
+      <p className={typo.quote}>“{extras.testimonial.quote}”</p>
+      <footer className={`mt-4 ${typo.bodySm}`}>
         <span className="font-semibold text-foreground">{extras.testimonial.author}</span> — {extras.testimonial.role}
       </footer>
     </blockquote>
@@ -99,10 +99,13 @@ const Testimonial = ({ divisionId }: { divisionId: string }) => {
 const RelevantWork = ({ division }: { division: Division }) => (
   <div>
     <div className="flex items-center justify-between gap-4 mb-3">
-      <h4 className="text-sm font-semibold text-foreground">See relevant work</h4>
+      <h4 className={typo.headingXs}>See relevant work</h4>
       <Link
         to={`/work/${division.id}`}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:gap-2.5 transition-all duration-300"
+        onClick={() =>
+          trackEvent("proof_block_cta_click", { division: division.id, location: "services_proof_block" })
+        }
+        className={`inline-flex items-center gap-1.5 ${typo.link} hover:gap-2.5 transition-all duration-300`}
       >
         View case studies <ArrowRight size={14} />
       </Link>
@@ -110,11 +113,9 @@ const RelevantWork = ({ division }: { division: Division }) => (
     <div className="grid sm:grid-cols-3 gap-3">
       {division.work.map((w) => (
         <div key={w.title} className="rounded-2xl bg-background/70 border border-border/40 p-4">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-            {w.type}
-          </span>
-          <p className="mt-1 text-base font-semibold text-foreground">{w.title}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{w.note}</p>
+          <span className={typo.caption}>{w.type}</span>
+          <p className={`mt-1 ${typo.headingSm}`}>{w.title}</p>
+          <p className={`mt-1 ${typo.bodySm}`}>{w.note}</p>
         </div>
       ))}
     </div>
@@ -130,13 +131,9 @@ const ServicesSection = () => {
     <section id="products" className="section-padding bg-surface-elevated">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-14">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
-            Our Divisions
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-            Five divisions. One standard.
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <span className={typo.eyebrow}>Our Divisions</span>
+          <h2 className={`mt-4 ${typo.displayLg}`}>Five divisions. One standard.</h2>
+          <p className={`mt-6 ${typo.lead} max-w-2xl mx-auto`}>
             Each division runs its own specialised services — built, staffed, and delivered end-to-end by Deplorix.
           </p>
         </AnimatedSection>
@@ -148,9 +145,12 @@ const ServicesSection = () => {
             return (
               <button
                 key={d.id}
-                onClick={() => setActiveId(d.id)}
-                className={`relative rounded-full px-5 py-2.5 text-sm transition-colors duration-300 ${
-                  isActive ? "text-background font-semibold" : "text-muted-foreground hover:text-foreground font-medium"
+                onClick={() => {
+                  setActiveId(d.id);
+                  trackEvent("division_selector_click", { division: d.id, location: "services_section" });
+                }}
+                className={`relative rounded-full px-5 py-2.5 transition-colors duration-300 ${
+                  isActive ? `text-background ${typo.pillActive}` : `text-muted-foreground hover:text-foreground ${typo.pillIdle}`
                 }`}
               >
                 {isActive && (
@@ -184,14 +184,17 @@ const ServicesSection = () => {
                 <div className={`w-14 h-14 rounded-2xl ${active.iconBg} flex items-center justify-center mb-6`}>
                   <active.icon size={24} className="text-foreground" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">{active.name}</h3>
-                <p className="mt-2 text-base md:text-lg font-serif italic text-foreground/70">{active.tagline}</p>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{active.blurb}</p>
+                <h3 className={typo.displayMd}>{active.name}</h3>
+                <p className={`mt-2 ${typo.tagline}`}>{active.tagline}</p>
+                <p className={`mt-4 ${typo.body}`}>{active.blurb}</p>
               </div>
 
               <button
-                onClick={() => setSelected(active)}
-                className="inline-flex items-center gap-1.5 self-start text-sm font-semibold text-foreground hover:gap-2.5 transition-all duration-300"
+                onClick={() => {
+                  setSelected(active);
+                  trackEvent("proof_block_cta_click", { division: active.id, location: "explore_division" });
+                }}
+                className={`inline-flex items-center gap-1.5 self-start ${typo.link} hover:gap-2.5 transition-all duration-300`}
               >
                 Explore this division
                 <ArrowRight size={16} />
@@ -220,7 +223,10 @@ const ServicesSection = () => {
               <p className="text-base font-serif italic text-foreground">{active.cta}</p>
               <button
                 type="button"
-                onClick={() => openInquiry(active.id)}
+                onClick={() => {
+                  trackEvent("proof_block_cta_click", { division: active.id, location: "division_cta" });
+                  openInquiry(active.id);
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-foreground text-primary-foreground hover:bg-foreground/90 transition-colors shrink-0"
               >
                 {active.ctaLabel} <ArrowRight size={16} />
