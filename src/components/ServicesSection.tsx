@@ -14,6 +14,8 @@ import { Link } from "react-router-dom";
 import { divisions, type Division, type SubService } from "@/data/divisions";
 import { divisionExtras } from "@/data/division-extras";
 import { openInquiry } from "./ServiceInquiryForm";
+import { type as typo } from "@/lib/typography";
+import { trackEvent } from "@/lib/analytics";
 
 
 const SubServiceCard = ({ item, index }: { item: SubService; index: number }) => {

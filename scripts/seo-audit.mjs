@@ -12,7 +12,6 @@
  * Usage: node scripts/seo-audit.mjs   (writes seo-audit-report.md)
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { globSync } from "node:fs";
 import { execSync } from "node:child_process";
 
 const read = (p) => (existsSync(p) ? readFileSync(p, "utf8") : "");
