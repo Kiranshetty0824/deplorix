@@ -215,9 +215,6 @@ const HeroPhone = ({ autoRotate = true, activeId, onActiveChange, source = "hero
         </motion.div>
       </motion.div>
 
-      <span className="sr-only">
-        <ExternalLink size={0} />
-      </span>
     </div>
   );
 };

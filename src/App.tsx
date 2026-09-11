@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 
 import DivisionWork from "./pages/DivisionWork.tsx";
+import Explore from "./pages/Explore.tsx";
 import AdminAuth from "./pages/AdminAuth.tsx";
 import AdminCertificates from "./pages/AdminCertificates.tsx";
 
@@ -21,6 +22,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/work/:divisionId" element={<DivisionWork />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/admin/login" element={<AdminAuth />} />
