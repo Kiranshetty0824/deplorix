@@ -1,14 +1,30 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { divisions } from "@/data/divisions";
+import { caseStudyHref, projectsForDivision } from "@/data/projects";
+import { trackEvent } from "@/lib/analytics";
+
+type Props = {
+  /** Pause the auto-rotation (used on the explore page where the user drives it). */
+  autoRotate?: boolean;
+  /** Controlled active division id. */
+  activeId?: string;
+  onActiveChange?: (id: string) => void;
+  source?: string;
+};
 
 /**
- * Floating 3D phone mockup shown beside the hero headline.
- * Cycles through the service divisions, each screen also showing sample work.
+ * Floating 3D phone mockup. Cycles through the service divisions, showing what
+ * each division does plus real work we've shipped, each linking to its case study.
  */
-const HeroPhone = () => {
-  const [index, setIndex] = useState(0);
+const HeroPhone = ({ autoRotate = true, activeId, onActiveChange, source = "hero" }: Props) => {
+  const [internalIndex, setInternalIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const controlledIndex = activeId ? divisions.findIndex((d) => d.id === activeId) : -1;
+  const index = controlledIndex >= 0 ? controlledIndex : internalIndex;
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -16,11 +32,19 @@ const HeroPhone = () => {
   const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [-10, 12]), { stiffness: 120, damping: 18 });
 
   useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % divisions.length), 4200);
+    if (!autoRotate) return;
+    const t = setInterval(() => setInternalIndex((i) => (i + 1) % divisions.length), 4600);
     return () => clearInterval(t);
-  }, []);
+  }, [autoRotate]);
 
   const active = divisions[index];
+  const work = projectsForDivision(active.id);
+
+  const select = (i: number) => {
+    setInternalIndex(i);
+    onActiveChange?.(divisions[i].id);
+    trackEvent("hero_phone_division_click", { division: divisions[i].id, source });
+  };
 
   const handleMove = (e: React.MouseEvent) => {
     const el = containerRef.current;
@@ -44,7 +68,7 @@ const HeroPhone = () => {
       style={{ perspective: 1200 }}
     >
       {/* Ambient glow */}
-      <div className="absolute w-72 h-72 rounded-full bg-secondary blur-3xl opacity-70" aria-hidden />
+      <div className="absolute w-64 h-64 md:w-72 md:h-72 rounded-full bg-secondary blur-3xl opacity-70" aria-hidden />
 
       <motion.div
         initial={{ opacity: 0, y: 60, rotateY: 24 }}
@@ -59,7 +83,7 @@ const HeroPhone = () => {
       >
         {/* Phone body */}
         <div
-          className="relative w-[268px] h-[556px] rounded-[3rem] p-[10px] bg-foreground"
+          className="relative w-[240px] h-[500px] sm:w-[268px] sm:h-[556px] rounded-[3rem] p-[10px] bg-foreground"
           style={{ boxShadow: "0 45px 80px -30px hsl(0 0% 0% / 0.55), 0 0 0 1px hsl(0 0% 0% / 0.25)" }}
         >
           {/* Side buttons */}
@@ -85,36 +109,71 @@ const HeroPhone = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -14 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="px-5 pt-6"
+                className="px-4 pt-5 pb-16 h-full overflow-hidden"
               >
                 <div className={`w-11 h-11 rounded-2xl ${active.iconBg} flex items-center justify-center`}>
                   <active.icon size={20} className="text-foreground" />
                 </div>
-                <p className="mt-4 text-lg font-bold tracking-tight text-foreground leading-tight">{active.name}</p>
+                <p className="mt-3 text-lg font-bold tracking-tight text-foreground leading-tight">{active.name}</p>
                 <p className="mt-1 text-[12px] text-muted-foreground leading-snug">{active.tagline}</p>
 
-                <div className="mt-4 space-y-2">
-                  {active.subServices.slice(0, 3).map((s) => (
-                    <div key={s.title} className="rounded-xl bg-secondary px-3 py-2">
+                <div className="mt-3 space-y-1.5">
+                  {active.subServices.slice(0, 2).map((s) => (
+                    <div key={s.title} className="rounded-xl bg-secondary px-3 py-1.5">
                       <p className="text-[12px] font-semibold text-foreground leading-tight">{s.title}</p>
                     </div>
                   ))}
                 </div>
 
-                <p className="mt-5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Recent work
+                <p className="mt-4 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                  Our work
                 </p>
                 <div className="mt-2 space-y-2">
-                  {active.work.slice(0, 2).map((w) => (
-                    <div
-                      key={w.title}
-                      className="rounded-xl border border-border/60 px-3 py-2"
-                    >
-                      <p className="text-[12px] font-semibold text-foreground leading-tight">{w.title}</p>
-                      <p className="text-[10px] text-muted-foreground leading-tight">{w.type}</p>
-                    </div>
-                  ))}
+                  {work.length > 0
+                    ? work.slice(0, 2).map((p) => (
+                        <Link
+                          key={p.slug}
+                          to={caseStudyHref(active.id)}
+                          onClick={() =>
+                            trackEvent("hero_phone_work_click", { division: active.id, project: p.slug, source })
+                          }
+                          className="flex items-center gap-2 rounded-xl border border-border/60 p-1.5 hover:border-foreground/40 transition-colors"
+                        >
+                          <img
+                            src={p.image}
+                            alt={`${p.title} screenshot`}
+                            loading="lazy"
+                            className="h-10 w-14 rounded-lg object-cover"
+                          />
+                          <span className="min-w-0">
+                            <span className="block text-[12px] font-semibold text-foreground leading-tight truncate">
+                              {p.title}
+                            </span>
+                            <span className="block text-[10px] text-muted-foreground leading-tight truncate">
+                              {p.category}
+                            </span>
+                          </span>
+                        </Link>
+                      ))
+                    : active.work.slice(0, 2).map((w) => (
+                        <Link
+                          key={w.title}
+                          to={caseStudyHref(active.id)}
+                          className="block rounded-xl border border-border/60 px-3 py-2 hover:border-foreground/40 transition-colors"
+                        >
+                          <p className="text-[12px] font-semibold text-foreground leading-tight">{w.title}</p>
+                          <p className="text-[10px] text-muted-foreground leading-tight">{w.type}</p>
+                        </Link>
+                      ))}
                 </div>
+
+                <Link
+                  to={caseStudyHref(active.id)}
+                  onClick={() => trackEvent("hero_phone_cta_click", { division: active.id, source })}
+                  className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-[12px] font-semibold text-primary-foreground hover:bg-foreground/90 transition-colors"
+                >
+                  See case study <ArrowRight size={13} />
+                </Link>
               </motion.div>
             </AnimatePresence>
 
@@ -125,7 +184,7 @@ const HeroPhone = () => {
                   key={d.id}
                   type="button"
                   aria-label={d.name}
-                  onClick={() => setIndex(i)}
+                  onClick={() => select(i)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i === index ? "w-6 bg-foreground" : "w-1.5 bg-border"
                   }`}
@@ -155,6 +214,10 @@ const HeroPhone = () => {
           <p className="text-[11px] text-muted-foreground">Projects shipped</p>
         </motion.div>
       </motion.div>
+
+      <span className="sr-only">
+        <ExternalLink size={0} />
+      </span>
     </div>
   );
 };
