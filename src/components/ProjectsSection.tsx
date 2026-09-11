@@ -23,6 +23,7 @@ const projects = [
   {
     title: "FinFlow Dashboard",
     category: "Web App",
+    divisionId: "tech",
     image: projectWeb,
     description: "A comprehensive financial management dashboard designed for businesses to track expenses, revenue, invoices, and generate detailed financial reports in real-time.",
     techStack: ["React.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Chart.js", "Express.js", "JWT Auth"],
