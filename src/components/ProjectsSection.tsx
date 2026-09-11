@@ -1,9 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Code2, Layers, Clock, Users, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ExternalLink, Code2, Layers, Clock, Users, CheckCircle2, ArrowRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { caseStudyHref } from "@/data/projects";
+import { type } from "@/lib/typography";
 import projectWeb from "@/assets/project-finflow.webp";
 import projectApp from "@/assets/project-healthtrack.webp";
 import projectDesign from "@/assets/project-educonnect.webp";
