@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Projects", href: "#fyp" },
   { label: "Careers", href: "#resources" },
   { label: "Our Work", href: "#pricing" },
+  { label: "Explore", href: "/explore" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -32,6 +33,11 @@ const Navbar = () => {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
+    if (href.startsWith("/")) {
+      navigate(href);
+      window.scrollTo({ top: 0 });
+      return;
+    }
     if (!isHome) {
       navigate("/" + href);
       return;

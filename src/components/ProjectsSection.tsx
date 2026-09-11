@@ -1,9 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Code2, Layers, Clock, Users, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ExternalLink, Code2, Layers, Clock, Users, CheckCircle2, ArrowRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { caseStudyHref } from "@/data/projects";
+import { type } from "@/lib/typography";
 import projectWeb from "@/assets/project-finflow.webp";
 import projectApp from "@/assets/project-healthtrack.webp";
 import projectDesign from "@/assets/project-educonnect.webp";
@@ -20,6 +23,7 @@ const projects = [
   {
     title: "FinFlow Dashboard",
     category: "Web App",
+    divisionId: "tech",
     image: projectWeb,
     description: "A comprehensive financial management dashboard designed for businesses to track expenses, revenue, invoices, and generate detailed financial reports in real-time.",
     techStack: ["React.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Chart.js", "Express.js", "JWT Auth"],
@@ -38,6 +42,7 @@ const projects = [
   {
     title: "HealthTrack Mobile",
     category: "Mobile App",
+    divisionId: "tech",
     image: projectApp,
     description: "A health and fitness tracking mobile application that helps users monitor their daily activities, set fitness goals, track nutrition, and connect with health professionals.",
     techStack: ["React Native", "TypeScript", "Firebase", "Redux", "Node.js", "PostgreSQL", "Google Fit API", "Apple HealthKit"],
