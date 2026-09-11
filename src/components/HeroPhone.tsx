@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { divisions } from "@/data/divisions";
 import { caseStudyHref, projectsForDivision } from "@/data/projects";
 import { trackEvent } from "@/lib/analytics";

@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Projects", href: "#fyp" },
   { label: "Careers", href: "#resources" },
   { label: "Our Work", href: "#pricing" },
+  { label: "Explore", href: "/explore" },
   { label: "Contact", href: "#contact" },
 ];
 
