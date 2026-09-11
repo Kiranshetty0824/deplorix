@@ -33,6 +33,11 @@ const Navbar = () => {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
+    if (href.startsWith("/")) {
+      navigate(href);
+      window.scrollTo({ top: 0 });
+      return;
+    }
     if (!isHome) {
       navigate("/" + href);
       return;
