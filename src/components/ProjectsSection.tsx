@@ -42,6 +42,7 @@ const projects = [
   {
     title: "HealthTrack Mobile",
     category: "Mobile App",
+    divisionId: "tech",
     image: projectApp,
     description: "A health and fitness tracking mobile application that helps users monitor their daily activities, set fitness goals, track nutrition, and connect with health professionals.",
     techStack: ["React Native", "TypeScript", "Firebase", "Redux", "Node.js", "PostgreSQL", "Google Fit API", "Apple HealthKit"],
