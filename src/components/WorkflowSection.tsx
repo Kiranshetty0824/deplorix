@@ -14,7 +14,7 @@ const WorkflowSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding" ref={ref}>
+    <section className="section-padding overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-20">
           <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
