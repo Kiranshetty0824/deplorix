@@ -11,6 +11,7 @@ import { divisions } from "@/data/divisions";
 import { caseStudyHref, projectsForDivision } from "@/data/projects";
 import { type } from "@/lib/typography";
 import { trackEvent } from "@/lib/analytics";
+import { Button } from "@/components/ui/button";
 
 const BASE_URL = "https://deplorixtechnologies.site";
 
@@ -48,14 +49,15 @@ const Explore = () => {
               {/* Division selector */}
               <div className="flex flex-wrap gap-2">
                 {divisions.map((d) => (
-                  <button
+                  <Button
                     key={d.id}
                     type="button"
+                    variant="ghost"
                     onClick={() => {
                       setActiveId(d.id);
                       trackEvent("division_selector_click", { division: d.id, source: "explore" });
                     }}
-                    className={`relative rounded-full px-4 py-2 transition-colors ${
+                    className={`relative h-auto rounded-full px-4 py-2 transition-colors ${
                       d.id === activeId
                         ? `${type.pillActive} text-foreground`
                         : `${type.pillIdle} text-muted-foreground hover:text-foreground`
@@ -69,7 +71,7 @@ const Explore = () => {
                       />
                     )}
                     <span className="relative">{d.short}</span>
-                  </button>
+                  </Button>
                 ))}
               </div>
 
@@ -124,12 +126,11 @@ const Explore = () => {
                   </>
                 )}
 
-                <Link
-                  to={caseStudyHref(active.id)}
-                  className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 ${type.button} bg-foreground text-primary-foreground hover:bg-foreground/90 transition-colors`}
-                >
-                  Read the {active.short} case study <ArrowRight size={16} />
-                </Link>
+                <Button asChild variant="hero" className="mt-8">
+                  <Link to={caseStudyHref(active.id)}>
+                    Read the {active.short} case study <ArrowRight size={16} />
+                  </Link>
+                </Button>
               </motion.div>
             </div>
           </div>
