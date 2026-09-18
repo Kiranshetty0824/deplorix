@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { divisions } from "@/data/divisions";
 import { caseStudyHref, projectsForDivision } from "@/data/projects";
 import { trackEvent } from "@/lib/analytics";
@@ -167,26 +168,29 @@ const HeroPhone = ({ autoRotate = true, activeId, onActiveChange, source = "hero
                       ))}
                 </div>
 
-                <Link
-                  to={caseStudyHref(active.id)}
-                  onClick={() => trackEvent("hero_phone_cta_click", { division: active.id, source })}
-                  className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-[12px] font-semibold text-primary-foreground hover:bg-foreground/90 transition-colors"
-                >
-                  See case study <ArrowRight size={13} />
-                </Link>
+                <Button asChild variant="hero" size="sm" className="mt-3 w-full text-[12px]">
+                  <Link
+                    to={caseStudyHref(active.id)}
+                    onClick={() => trackEvent("hero_phone_cta_click", { division: active.id, source })}
+                  >
+                    See case study <ArrowRight size={13} />
+                  </Link>
+                </Button>
               </motion.div>
             </AnimatePresence>
 
             {/* Tab bar */}
             <div className="absolute bottom-0 inset-x-0 border-t border-border/60 bg-background/90 backdrop-blur px-4 py-3 flex justify-center gap-1.5">
               {divisions.map((d, i) => (
-                <button
+                <Button
                   key={d.id}
                   type="button"
+                  variant="ghost"
+                  size="sm"
                   aria-label={d.name}
                   onClick={() => select(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === index ? "w-6 bg-foreground" : "w-1.5 bg-border"
+                  className={`h-6 min-w-6 rounded-full p-0 transition-all duration-300 after:h-1.5 after:rounded-full ${
+                    i === index ? "w-8 after:w-6 after:bg-foreground" : "w-6 after:w-1.5 after:bg-border"
                   }`}
                 />
               ))}
