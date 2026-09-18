@@ -1,11 +1,12 @@
 # SEO audit report
 
-Generated: 2026-09-18T16:44:16.013Z
+Generated: 2026-09-18T16:44:48.080Z
 
 Routes crawled (10): /, /explore, /terms, /admin/login, /admin/certificates, /work/tech, /work/digital, /work/projects, /work/bps, /work/training
 
 ## Passed
 - No /verify references in source, sitemap, robots.txt or internal links.
+- Sitemap lists 8 URL(s), all matching real routes.
 - robots.txt allows crawling.
 - robots.txt advertises the sitemap.
 - index.html declares a canonical URL.
@@ -13,4 +14,4 @@ Routes crawled (10): /, /explore, /terms, /admin/login, /admin/certificates, /wo
 - All internal links resolve to declared routes.
 
 ## Issues
-- Sitemap missing route(s): /explore
+- None. Audit clean.
