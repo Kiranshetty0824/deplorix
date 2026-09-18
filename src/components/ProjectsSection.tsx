@@ -5,6 +5,7 @@ import { ExternalLink, Code2, Layers, Clock, Users, CheckCircle2, ArrowRight } f
 import AnimatedSection from "./AnimatedSection";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { caseStudyHref } from "@/data/projects";
 import { type } from "@/lib/typography";
 import projectWeb from "@/assets/project-finflow.webp";
@@ -61,6 +62,7 @@ const projects = [
   {
     title: "EduConnect Platform",
     category: "SaaS",
+    divisionId: "projects",
     image: projectDesign,
     description: "A full-featured SaaS platform connecting students, teachers, and institutions for online learning, course management, live classes, and performance tracking.",
     techStack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS", "WebRTC", "Stripe", "AWS S3"],
@@ -79,6 +81,7 @@ const projects = [
   {
     title: "ShopEase Commerce",
     category: "E-Commerce",
+    divisionId: "tech",
     image: projectEcommerce,
     description: "A modern e-commerce platform with a focus on user experience, featuring product catalogs, cart management, secure checkout, order tracking, and an admin dashboard for store management.",
     techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Razorpay", "Redis", "Cloudinary", "Tailwind CSS"],
@@ -102,13 +105,13 @@ const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   return (
-    <section id="pricing" className="section-padding" ref={ref}>
+    <section id="pricing" className="section-padding bg-gradient-subtle" ref={ref}>
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-20">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
+        <AnimatedSection className="text-center mb-14 md:mb-20">
+          <span className={type.eyebrow}>
             Portfolio
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+          <h2 className={`mt-4 ${type.displayLg}`}>
             Selected work
           </h2>
         </AnimatedSection>
@@ -120,8 +123,14 @@ const ProjectsSection = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="group cursor-pointer"
+              className="group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 rounded-3xl"
               onClick={() => setSelectedProject(project)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") setSelectedProject(project);
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Explore ${project.title}`}
             >
               <div className={`rounded-3xl overflow-hidden hover-lift border border-transparent hover:border-border/30 transition-all duration-500 ${cardColors[i % cardColors.length]}`}>
                 <div className="aspect-[4/3] overflow-hidden relative">
@@ -143,7 +152,10 @@ const ProjectsSection = () => {
                   <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     {project.category}
                   </span>
-                  <h3 className="text-xl font-semibold text-foreground mt-1">{project.title}</h3>
+                  <div className="mt-1 flex items-center justify-between gap-4">
+                    <h3 className={type.headingSm}>{project.title}</h3>
+                    <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -210,6 +222,15 @@ const ProjectsSection = () => {
                     {selectedProject.process}
                   </p>
                 </div>
+
+                <Button asChild variant="hero" className="w-full sm:w-auto">
+                  <Link
+                    to={caseStudyHref(selectedProject.divisionId)}
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    See relevant case study <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             </>
           )}

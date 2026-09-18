@@ -12,7 +12,7 @@ const CTASection = () => {
         <AnimatedSection>
           <div className="relative overflow-hidden rounded-3xl bg-green-100 dark:bg-green-900/40 p-10 md:p-16">
             {/* Decorative shapes */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-green-200/50 dark:bg-green-800/30 rounded-full -translate-y-1/2 translate-x-1/4" />
+            <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-green-200/50 dark:bg-green-800/30 rounded-full -translate-y-1/2" />
             <div className="absolute bottom-0 left-1/3 w-48 h-48 bg-green-200/40 dark:bg-green-800/20 rounded-full translate-y-1/3" />
             
             <div className="relative z-10">
@@ -20,7 +20,7 @@ const CTASection = () => {
                 Let's get started
               </h2>
               <p className="mt-4 text-lg md:text-xl text-foreground/70 max-w-md">
-                Start for free. No credit card required.
+                Tell us what you want to build. We’ll help you define the right next step.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Button

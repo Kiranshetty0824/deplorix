@@ -19,7 +19,10 @@ export type AnalyticsEvent =
   | "division_selector_click"
   | "proof_block_cta_click"
   | "case_study_view"
-  | "inquiry_form_submit";
+  | "inquiry_form_submit"
+  | "hero_phone_division_click"
+  | "hero_phone_work_click"
+  | "hero_phone_cta_click";
 
 export const trackEvent = (event: AnalyticsEvent, payload: AnalyticsPayload = {}) => {
   if (typeof window === "undefined") return;

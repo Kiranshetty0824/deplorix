@@ -11,7 +11,7 @@ const HeroSection = () => {
   const [projectOpen, setProjectOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
+    <section className="relative min-h-[92svh] flex items-center overflow-hidden pt-24 pb-14 md:pt-28 md:pb-20">
       {/* Hero background image */}
       <img
         src={heroBg}
@@ -22,11 +22,7 @@ const HeroSection = () => {
       />
       <div className="absolute inset-0 bg-background/85" />
 
-      {/* Floating orbs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-secondary rounded-full blur-3xl opacity-60 animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl opacity-40 animate-float animate-delay-300" />
-
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-8 items-center">
         {/* Left — copy */}
         <div className="text-center lg:text-left">
           <motion.div
@@ -39,22 +35,15 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
-          <h1 className="sr-only">
-            Building Innovative Software &amp; AI Solutions for Startups and Students — DeploriX Technologies, Bangalore
-          </h1>
-
           <motion.div
-            role="presentation"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-5xl md:text-7xl font-bold tracking-tight leading-[0.95] text-foreground"
           >
-            Build.
-            <br />
-            Deploy.
-            <br />
-            <span className="text-gradient">Grow.</span>
+            <h1>
+              Build.<br />Deploy.<br /><span className="text-gradient">Grow.</span>
+            </h1>
           </motion.div>
 
           <motion.p
@@ -97,7 +86,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center lg:justify-end"
+          className="flex justify-center lg:justify-end pb-4 md:pb-0"
         >
           <HeroPhone source="hero" />
         </motion.div>
