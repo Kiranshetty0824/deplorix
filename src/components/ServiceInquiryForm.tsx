@@ -12,8 +12,18 @@ import { trackEvent } from "@/lib/analytics";
 
 export const INQUIRY_EVENT = "deplorix:inquiry";
 
-export const openInquiry = (divisionId: string) => {
-  window.dispatchEvent(new CustomEvent(INQUIRY_EVENT, { detail: divisionId }));
+export type InquiryDetail = {
+  divisionId: string;
+  /** Optional service name to mention in the message. */
+  service?: string;
+  /** Optional pre-filled message body (e.g. an AI generated brief). */
+  message?: string;
+};
+
+export const openInquiry = (divisionId: string, extra: Omit<InquiryDetail, "divisionId"> = {}) => {
+  window.dispatchEvent(
+    new CustomEvent<InquiryDetail>(INQUIRY_EVENT, { detail: { divisionId, ...extra } })
+  );
 };
 
 const topicFor = (divisionId: string) => {
