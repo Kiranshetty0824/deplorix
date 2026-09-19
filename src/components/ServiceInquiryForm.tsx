@@ -82,8 +82,23 @@ const ServiceInquiryForm = () => {
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const id = (e as CustomEvent<string>).detail;
-      if (divisions.some((d) => d.id === id)) setDivisionId(id);
+      const raw = (e as CustomEvent<InquiryDetail | string>).detail;
+      const detail: InquiryDetail = typeof raw === "string" ? { divisionId: raw } : raw;
+      if (divisions.some((d) => d.id === detail.divisionId)) setDivisionId(detail.divisionId);
+
+      if (detail.message || detail.service) {
+        setForm((prev) => ({
+          ...prev,
+          message:
+            detail.message?.slice(0, 1000) ??
+            (prev.message.trim()
+              ? prev.message
+              : `I'm interested in ${detail.service}. Please share how you'd approach this and what it would involve.`),
+        }));
+        setTouched((prev) => ({ ...prev, message: false }));
+        setErrors((prev) => ({ ...prev, message: undefined }));
+      }
+
       document.getElementById("service-inquiry")?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
     window.addEventListener(INQUIRY_EVENT, handler);
