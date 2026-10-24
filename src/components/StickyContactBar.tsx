@@ -53,9 +53,9 @@ const StickyContactBar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.35 }}
-          className="fixed bottom-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 z-40 pointer-events-none"
+          className="fixed bottom-24 left-4 right-4 md:bottom-6 md:left-0 md:right-0 z-40 pointer-events-none"
         >
-          <div className="pointer-events-auto mx-auto flex max-w-2xl items-center gap-3 md:gap-5 rounded-full border border-border/60 bg-background/90 backdrop-blur-md shadow-lg px-4 py-2.5 md:px-6 md:py-3 md:mr-24">
+          <div className="pointer-events-auto mx-auto flex max-w-xl items-center gap-3 md:gap-5 rounded-full border border-border/60 bg-background/90 backdrop-blur-md shadow-lg px-4 py-2.5 md:px-6 md:py-3">
             <div className="min-w-0 flex-1">
               <p className={`${type.caption} hidden sm:block`}>Talking about</p>
               <p className="truncate text-sm font-semibold text-foreground">
