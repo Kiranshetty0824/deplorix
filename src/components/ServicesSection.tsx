@@ -16,9 +16,10 @@ import { divisionExtras } from "@/data/division-extras";
 import { openInquiry } from "./ServiceInquiryForm";
 import { type as typo } from "@/lib/typography";
 import { trackEvent } from "@/lib/analytics";
+import { setServiceContext } from "@/lib/service-context";
 
 
-const SubServiceCard = ({ item, index }: { item: SubService; index: number }) => {
+const SubServiceCard = ({ item, index, divisionId }: { item: SubService; index: number; divisionId: string }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -30,7 +31,7 @@ const SubServiceCard = ({ item, index }: { item: SubService; index: number }) =>
     >
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => { setOpen((v) => !v); setServiceContext({ divisionId, service: item.title }); }}
         className="w-full flex items-start justify-between gap-4 text-left p-5"
         aria-expanded={open}
       >
@@ -203,7 +204,7 @@ const ServicesSection = () => {
 
             <div className="mt-10 grid md:grid-cols-2 gap-3">
               {active.subServices.map((s, i) => (
-                <SubServiceCard key={s.title} item={s} index={i} />
+                <SubServiceCard key={s.title} item={s} index={i} divisionId={active.id} />
               ))}
             </div>
 
