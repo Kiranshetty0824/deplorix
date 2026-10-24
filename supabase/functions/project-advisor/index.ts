@@ -17,31 +17,29 @@ tech | Deplorix Tech | Websites, Apps & Software — Built and Shipped
 
 digital | Deplorix Digital | Marketing & Personal Branding That Gets Noticed
   - Social Media Management
-  - Content Creation & Design
-  - Personal Branding
-  - Performance Marketing & Ads
-  - SEO & Online Visibility
+  - Personal Branding for Founders
+  - Performance Marketing
+  - Brand Identity Design
+  - Content Creation
 
-projects | Deplorix Projects | Practical Project Delivery for Students
-  - Final Year Project Development
-  - Mini & Academic Projects
+projects | Deplorix Projects | Practical Project Delivery for Students (final-year and academic projects)
+  - Final-Year Project Development
   - Documentation & Reports
-  - Project Guidance & Mentoring
-  - Demo, Viva & Presentation Support
+  - One-on-One Mentorship
+  - Viva & Review Preparation
 
 bps | Deplorix Business Process Solutions | Dedicated Support Teams, Managed End-to-End
-  - Customer Support Teams
-  - Back Office & Data Operations
-  - Lead Generation & Tele-calling
-  - Process Documentation & QA
-  - Dedicated Managed Teams
+  - Customer Support
+  - Technical Support
+  - Sales Support
+  - Back-Office & Data Processes
+  - Dedicated Managed Seats
 
 training | Deplorix Training | Building the Workforce Our Other Divisions Run On
-  - Internship Programs
-  - Technical Skill Training
-  - Corporate & Team Training
-  - Placement Readiness
-  - Workshops & Bootcamps
+  - Job-Readiness & Communication
+  - Process & Tools Upskilling
+  - Certification Pathways
+  - Corporate Training
 `;
 
 const SCHEMA = {
