@@ -281,7 +281,7 @@ const ProjectAdvisor = () => {
                   <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3">
                     <div>
                       <p className={type.caption}>Estimated timeline</p>
-                      <p className={type.metricValue}>{brief.timeline}</p>
+                      <p className={`mt-1 ${type.headingSm}`}>{brief.timeline}</p>
                     </div>
                     <div className="max-w-md">
                       <p className={type.caption}>Next step</p>
