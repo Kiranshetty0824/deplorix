@@ -8,20 +8,20 @@
 
 export const type = {
   /** Small uppercase label above a section heading. */
-  eyebrow: "text-xs font-medium tracking-wider uppercase text-muted-foreground",
+  eyebrow: "inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] uppercase text-foreground/60",
   /** Page / section hero heading (h1, h2). */
-  displayLg: "text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground",
+  displayLg: "font-display text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-[0.95] text-foreground",
   /** Panel / card heading (h2, h3). */
-  displayMd: "text-2xl md:text-3xl font-bold tracking-tight text-foreground",
+  displayMd: "font-display text-2xl md:text-3xl font-semibold tracking-tight text-foreground",
   /** Sub-heading inside a panel (h3, h4). */
   headingSm: "text-base font-semibold text-foreground",
   /** Smallest heading used for proof-block labels. */
   headingXs: "text-sm font-semibold text-foreground",
   /** Serif italic tagline / pull quote line. */
-  tagline: "text-base md:text-lg font-serif italic text-foreground/70",
+  tagline: "text-base md:text-lg italic text-foreground/70",
   /** Large serif italic quote used in testimonials. */
-  quote: "text-base md:text-lg font-serif italic text-foreground leading-relaxed",
-  quoteLg: "text-xl md:text-2xl font-serif italic text-foreground leading-relaxed",
+  quote: "text-base md:text-lg italic text-foreground leading-relaxed",
+  quoteLg: "font-display text-xl md:text-2xl font-medium text-foreground leading-relaxed",
   /** Intro paragraph under a section heading. */
   lead: "text-lg text-muted-foreground",
   /** Default body copy. */
@@ -31,8 +31,8 @@ export const type = {
   /** Caption used for meta chips (project type, role, etc). */
   caption: "text-xs font-medium text-muted-foreground uppercase tracking-wider",
   /** Big numeric value in an impact metric block. */
-  metricValue: "text-2xl md:text-3xl font-bold tracking-tight text-foreground",
-  metricValueLg: "text-3xl md:text-4xl font-bold tracking-tight text-foreground",
+  metricValue: "font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground",
+  metricValueLg: "font-display text-3xl md:text-4xl font-bold tracking-tight text-foreground",
   metricLabel: "text-xs md:text-sm text-muted-foreground",
   /** Interactive text. */
   pillActive: "text-sm font-semibold",
