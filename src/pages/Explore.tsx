@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProjectAdvisor from "@/components/ProjectAdvisor";
+import StickyContactBar from "@/components/StickyContactBar";
 import Seo from "@/components/Seo";
 import HeroPhone from "@/components/HeroPhone";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -135,9 +137,11 @@ const Explore = () => {
             </div>
           </div>
         </div>
+        <ProjectAdvisor />
       </main>
 
       <Footer />
+      <StickyContactBar />
     </div>
   );
 };

@@ -20,10 +20,17 @@ export type InquiryDetail = {
   message?: string;
 };
 
+const PENDING_KEY = "deplorix:pending-inquiry";
+
 export const openInquiry = (divisionId: string, extra: Omit<InquiryDetail, "divisionId"> = {}) => {
-  window.dispatchEvent(
-    new CustomEvent<InquiryDetail>(INQUIRY_EVENT, { detail: { divisionId, ...extra } })
-  );
+  const detail: InquiryDetail = { divisionId, ...extra };
+  if (!document.getElementById("service-inquiry")) {
+    // Form lives on the home page — carry the context across the navigation.
+    sessionStorage.setItem(PENDING_KEY, JSON.stringify(detail));
+    window.location.href = `/?division=${encodeURIComponent(divisionId)}#service-inquiry`;
+    return;
+  }
+  window.dispatchEvent(new CustomEvent<InquiryDetail>(INQUIRY_EVENT, { detail }));
 };
 
 const topicFor = (divisionId: string) => {
@@ -111,6 +118,17 @@ const ServiceInquiryForm = () => {
           () => document.getElementById("service-inquiry")?.scrollIntoView({ behavior: "smooth", block: "center" }),
           300
         );
+      }
+    }
+
+    const pending = sessionStorage.getItem(PENDING_KEY);
+    if (pending) {
+      sessionStorage.removeItem(PENDING_KEY);
+      try {
+        const detail = JSON.parse(pending) as InquiryDetail;
+        setTimeout(() => window.dispatchEvent(new CustomEvent(INQUIRY_EVENT, { detail })), 400);
+      } catch {
+        /* ignore malformed */
       }
     }
 

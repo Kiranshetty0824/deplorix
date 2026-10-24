@@ -11,6 +11,8 @@ import ContactSection from "@/components/ContactSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ProjectAdvisor from "@/components/ProjectAdvisor";
+import StickyContactBar from "@/components/StickyContactBar";
 
 const Index = () => {
   return (
@@ -24,9 +26,11 @@ const Index = () => {
       <InternshipSection />
       <ProjectsSection />
       <UpcomingProjectsSection />
+      <ProjectAdvisor />
       <ContactSection />
       <CTASection />
       <Footer />
+      <StickyContactBar />
       <WhatsAppButton />
     </div>
   );
