@@ -21,7 +21,7 @@ const WorkflowSection = () => {
             Process
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
-            How we work
+            How we work<span className="text-brand">.</span>
           </h2>
         </AnimatedSection>
 
@@ -31,7 +31,7 @@ const WorkflowSection = () => {
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : {}}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border origin-top"
+            className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-brand via-border to-transparent origin-top"
           />
 
           {steps.map((step, i) => (
@@ -45,12 +45,14 @@ const WorkflowSection = () => {
               } md:text-${i % 2 === 0 ? "right" : "left"}`}
             >
               {/* Dot */}
-              <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-foreground border-4 border-background z-10" />
+              <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-brand ring-4 ring-accent z-10" />
 
               <div className={`w-full pl-14 md:pl-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16" : "md:pl-16"}`}>
-                <span className="text-sm font-mono text-muted-foreground">{step.number}</span>
-                <h3 className="text-2xl font-semibold text-foreground mt-1 mb-2">{step.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                <div className="card-soft p-6 md:p-7">
+                  <span className="pill-label">Step {step.number}</span>
+                  <h3 className="text-2xl font-semibold text-foreground mt-4 mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                </div>
               </div>
             </motion.div>
           ))}

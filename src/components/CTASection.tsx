@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { Button } from "@/components/ui/button";
 import StartProjectDialog from "./StartProjectDialog";
@@ -8,34 +9,29 @@ const CTASection = () => {
 
   return (
     <section className="px-6 md:px-12 lg:px-20 py-12 md:py-20">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <AnimatedSection>
-          <div className="relative overflow-hidden rounded-3xl bg-accent p-10 md:p-16">
-            {/* Decorative shapes */}
-            <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-brand/15 rounded-full -translate-y-1/2" />
-            <div className="absolute bottom-0 left-1/3 w-48 h-48 bg-brand/15 rounded-full translate-y-1/3" />
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif italic font-medium tracking-tight text-foreground">
-                Let's get started
+          <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card px-8 py-14 md:px-16 md:py-20 text-center shadow-[var(--shadow-card)]">
+            <div className="absolute inset-0 bg-glow opacity-90" aria-hidden />
+            <div className="absolute inset-0 bg-grid" aria-hidden />
+
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <span className="pill-label">Let's get started</span>
+              <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight leading-[1.1] text-foreground">
+                Tell us what you want to build.
+                <br />
+                <span className="text-ghost">We'll define the next step.</span>
               </h2>
-              <p className="mt-4 text-lg md:text-xl text-foreground/70 max-w-md">
-                Tell us what you want to build. We’ll help you define the right next step.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="rounded-full text-base px-8 py-6 bg-secondary text-foreground border-none hover:bg-white shadow-sm"
-                  onClick={() => setProjectOpen(true)}
-                >
-                  Start a Project
+              <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+                <Button variant="hero" className="h-12 px-7 gap-2" onClick={() => setProjectOpen(true)}>
+                  Start a Project <ArrowRight size={16} />
                 </Button>
                 <Button
-                  size="lg"
-                  className="rounded-full text-base px-8 py-6 bg-foreground text-primary-foreground hover:bg-foreground/90"
-                  onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com?subject=Book a Call"}
+                  variant="hero-outline"
+                  className="h-12 px-7 gap-2"
+                  onClick={() => (window.location.href = "mailto:deplorixtechnologies@gmail.com?subject=Book a Call")}
                 >
-                  Book a Call
+                  Book a Call <ArrowUpRight size={16} />
                 </Button>
               </div>
             </div>
