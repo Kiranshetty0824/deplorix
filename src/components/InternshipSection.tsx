@@ -151,7 +151,7 @@ const InternshipSection = () => {
             <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-foreground text-primary-foreground rounded-full mb-6">
               Careers & Training
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
               Not a Typical Internship
             </h2>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">

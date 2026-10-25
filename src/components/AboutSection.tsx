@@ -32,10 +32,10 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <AnimatedSection>
-            <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
+            <span className="pill-label">
               Why DeploriX
             </span>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
               Crafted with precision
             </h2>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl">

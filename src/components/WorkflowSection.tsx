@@ -17,10 +17,10 @@ const WorkflowSection = () => {
     <section className="section-padding overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-20">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
+          <span className="pill-label">
             Process
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
             How we work
           </h2>
         </AnimatedSection>
