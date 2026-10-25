@@ -11,8 +11,8 @@ const upcomingProjects = [
     description:
       "A comprehensive platform designed to help colleges conduct events seamlessly — from planning and promotion to ticket generation, attendee management, and post-event analytics. Everything your institution needs in one place.",
     tags: ["Event Management", "Ticketing", "Analytics"],
-    bg: "bg-blue-50 dark:bg-blue-950/40",
-    iconBg: "bg-blue-100 dark:bg-blue-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     icon: Truck,
@@ -21,8 +21,8 @@ const upcomingProjects = [
     description:
       "A smart logistics solution that connects shippers with truck owners. Book trucks on-demand, track shipments in real time, and manage freight operations with ease — built for speed and reliability.",
     tags: ["Logistics", "Booking", "Real-time Tracking"],
-    bg: "bg-amber-50 dark:bg-amber-950/40",
-    iconBg: "bg-amber-100 dark:bg-amber-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     icon: Landmark,
@@ -31,8 +31,8 @@ const upcomingProjects = [
     description:
       "A modern banking management application tailored for local and community banks. Manage accounts, transactions, loans, and customer records with a secure, intuitive interface designed for efficiency.",
     tags: ["FinTech", "Banking", "Security"],
-    bg: "bg-green-50 dark:bg-green-950/40",
-    iconBg: "bg-green-100 dark:bg-green-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     icon: Users,
@@ -41,8 +41,8 @@ const upcomingProjects = [
     description:
       "An all-in-one employee management app for tracking attendance, managing payroll, handling leave requests, and monitoring performance — empowering HR teams and managers to work smarter.",
     tags: ["HR Tech", "Payroll", "Performance"],
-    bg: "bg-purple-50 dark:bg-purple-950/40",
-    iconBg: "bg-purple-100 dark:bg-purple-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
 ];
 
@@ -54,10 +54,10 @@ const UpcomingProjectsSection = () => {
     <section id="upcoming" className="section-padding bg-surface-elevated" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-20">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
+          <span className="pill-label">
             Coming Soon
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
             Upcoming Projects
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">

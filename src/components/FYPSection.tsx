@@ -41,10 +41,10 @@ const plans = [
 ];
 
 const services = [
-  { icon: FileText, title: "Project Development", desc: "End-to-end development of your final year project with modern technologies.", bg: "bg-blue-50 dark:bg-blue-950/40", iconBg: "bg-blue-100 dark:bg-blue-900/50" },
-  { icon: BookOpen, title: "Documentation", desc: "Professional documentation following university standards and guidelines.", bg: "bg-amber-50 dark:bg-amber-950/40", iconBg: "bg-amber-100 dark:bg-amber-900/50" },
-  { icon: Compass, title: "Guidance", desc: "Expert mentorship from planning to execution with regular check-ins.", bg: "bg-green-50 dark:bg-green-950/40", iconBg: "bg-green-100 dark:bg-green-900/50" },
-  { icon: Presentation, title: "Presentation Support", desc: "Slides, demo prep, and mock presentations for confident delivery.", bg: "bg-purple-50 dark:bg-purple-950/40", iconBg: "bg-purple-100 dark:bg-purple-900/50" },
+  { icon: FileText, title: "Project Development", desc: "End-to-end development of your final year project with modern technologies.", bg: "bg-secondary", iconBg: "bg-accent" },
+  { icon: BookOpen, title: "Documentation", desc: "Professional documentation following university standards and guidelines.", bg: "bg-secondary", iconBg: "bg-accent" },
+  { icon: Compass, title: "Guidance", desc: "Expert mentorship from planning to execution with regular check-ins.", bg: "bg-secondary", iconBg: "bg-accent" },
+  { icon: Presentation, title: "Presentation Support", desc: "Slides, demo prep, and mock presentations for confident delivery.", bg: "bg-secondary", iconBg: "bg-accent" },
 ];
 
 const PlanCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => {
@@ -60,7 +60,7 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => 
       className={`relative rounded-3xl border p-8 flex flex-col h-full transition-all duration-500 ${
         plan.highlight
           ? "bg-foreground text-primary-foreground border-foreground shadow-2xl scale-[1.02]"
-          : "bg-teal-50 dark:bg-teal-950/40 hover-lift border-transparent hover:border-border/30"
+          : "bg-secondary hover-lift border-transparent hover:border-border/30"
       }`}
     >
       {plan.highlight && (
@@ -100,10 +100,10 @@ const FYPSection = () => {
     <section id="fyp" className="section-padding bg-background">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
+          <span className="pill-label">
             Academic Projects
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
             Final Year Projects
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">

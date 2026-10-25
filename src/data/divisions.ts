@@ -90,8 +90,8 @@ export const divisions = [
     cta: "Have a website or app idea? Let's scope it out.",
     ctaLabel: "Book a Free 20-Minute Scoping Call",
     subject: "Deplorix Tech — Free 20-minute call",
-    bg: "bg-blue-50 dark:bg-blue-950/40",
-    iconBg: "bg-blue-100 dark:bg-blue-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     id: "digital",
@@ -170,8 +170,8 @@ export const divisions = [
     cta: "Ready to build a brand people notice? Let's talk strategy.",
     ctaLabel: "Book a Free 20-Minute Strategy Call",
     subject: "Deplorix Digital — Free 20-minute call",
-    bg: "bg-purple-50 dark:bg-purple-950/40",
-    iconBg: "bg-purple-100 dark:bg-purple-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     id: "projects",
@@ -240,8 +240,8 @@ export const divisions = [
     cta: "Need a final-year project done right? Let's find the right one for you.",
     ctaLabel: "Book a Free 20-Minute Project Call",
     subject: "Deplorix Projects — Free 20-minute call",
-    bg: "bg-green-50 dark:bg-green-950/40",
-    iconBg: "bg-green-100 dark:bg-green-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     id: "bps",
@@ -320,8 +320,8 @@ export const divisions = [
     cta: "Currently hiring for support or sales roles? See if a dedicated team fits.",
     ctaLabel: "Book a Free 20-Minute Requirement Call",
     subject: "Deplorix Business Process Solutions — Free 20-minute call",
-    bg: "bg-amber-50 dark:bg-amber-950/40",
-    iconBg: "bg-amber-100 dark:bg-amber-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     id: "training",
@@ -390,8 +390,8 @@ export const divisions = [
     cta: "Want a trained, job-ready team without the ramp-up time? Let's talk.",
     ctaLabel: "Book a Free 20-Minute Training Call",
     subject: "Deplorix Training — Free 20-minute call",
-    bg: "bg-rose-50 dark:bg-rose-950/40",
-    iconBg: "bg-rose-100 dark:bg-rose-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
 ];
 

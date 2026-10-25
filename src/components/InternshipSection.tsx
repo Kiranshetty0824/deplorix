@@ -21,8 +21,8 @@ import internshipImg from "@/assets/internship.jpg";
 const contentBlocks = [
   {
     icon: Users, title: "Team-Based Work",
-    bg: "bg-blue-50 dark:bg-blue-950/40",
-    iconBg: "bg-blue-100 dark:bg-blue-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
     items: [
       { icon: Code, text: "Frontend Developers" },
       { icon: Server, text: "Backend Developers" },
@@ -32,8 +32,8 @@ const contentBlocks = [
   },
   {
     icon: Rocket, title: "Real Project Execution",
-    bg: "bg-amber-50 dark:bg-amber-950/40",
-    iconBg: "bg-amber-100 dark:bg-amber-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
     items: [
       { icon: Briefcase, text: "Live client projects" },
       { icon: GitBranch, text: "Product development" },
@@ -41,8 +41,8 @@ const contentBlocks = [
   },
   {
     icon: CalendarCheck, title: "Weekly System",
-    bg: "bg-green-50 dark:bg-green-950/40",
-    iconBg: "bg-green-100 dark:bg-green-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
     items: [
       { icon: Users, text: "Team meetings" },
       { icon: Target, text: "Progress reviews" },
@@ -51,8 +51,8 @@ const contentBlocks = [
   },
   {
     icon: Compass, title: "Mentorship",
-    bg: "bg-teal-50 dark:bg-teal-950/40",
-    iconBg: "bg-teal-100 dark:bg-teal-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
     items: [
       { icon: Compass, text: "Guided step-by-step" },
       { icon: Target, text: "Regular monitoring" },
@@ -60,8 +60,8 @@ const contentBlocks = [
   },
   {
     icon: Trophy, title: "Final Growth",
-    bg: "bg-purple-50 dark:bg-purple-950/40",
-    iconBg: "bg-purple-100 dark:bg-purple-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
     items: [
       { icon: Award, text: "Presentation skills" },
       { icon: Trophy, text: "Confidence building" },
@@ -69,8 +69,8 @@ const contentBlocks = [
   },
   {
     icon: Briefcase, title: "What You Gain",
-    bg: "bg-orange-50 dark:bg-orange-950/40",
-    iconBg: "bg-orange-100 dark:bg-orange-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
     items: [
       { icon: Briefcase, text: "Real experience" },
       { icon: GitBranch, text: "GitHub portfolio" },
@@ -151,7 +151,7 @@ const InternshipSection = () => {
             <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-foreground text-primary-foreground rounded-full mb-6">
               Careers & Training
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
               Not a Typical Internship
             </h2>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">

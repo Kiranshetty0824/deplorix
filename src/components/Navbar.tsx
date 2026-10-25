@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import StartProjectDialog from "./StartProjectDialog";
 import logo from "@/assets/deplorix-logo.png";
 
 const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Services", href: "#products" },
   { label: "Projects", href: "#fyp" },
   { label: "Careers", href: "#resources" },
@@ -31,11 +32,14 @@ const Navbar = () => {
 
   const isHome = location.pathname === "/";
 
+  const isActive = (href: string) =>
+    href.startsWith("/") ? location.pathname === href : false;
+
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     if (href.startsWith("/")) {
       navigate(href);
-      window.scrollTo({ top: 0 });
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     if (!isHome) {
@@ -52,49 +56,50 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled || !isHome ? "nav-glass shadow-sm" : "bg-transparent"
+          scrolled ? "nav-glass" : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
-            <img src={logo} alt="DeploriX Technologies logo" className="h-8 w-8 rounded-md object-contain" width={32} height={32} />
-            deploriX<span className="text-muted-foreground font-light">technologies</span>
+        <div className="max-w-7xl mx-auto px-5 md:px-10 flex items-center justify-between h-16 md:h-20 gap-4">
+          <Link to="/" className="flex items-center gap-2.5 text-foreground shrink-0" aria-label="DeploriX Technologies home">
+            <img src={logo} alt="" className="h-9 w-9 rounded-full object-contain" width={36} height={36} />
+            <span className="leading-[1.05] text-[15px] font-semibold tracking-tight">
+              deploriX
+              <span className="block font-medium text-muted-foreground">technologies</span>
+            </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => handleNavClick(link.href)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
-                {link.label}
-              </button>
-            ))}
+          <div className="hidden lg:flex items-center gap-1 rounded-full border border-border bg-card/80 backdrop-blur p-1.5 shadow-[var(--shadow-soft)]">
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`rounded-full px-4 py-1.5 text-sm transition-all duration-300 ${
+                    active
+                      ? "bg-card text-foreground font-medium shadow-[var(--shadow-card)] border border-border/70"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              );
+            })}
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-sm text-muted-foreground"
-              onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com"}
-            >
-              Contact
-            </Button>
-            <Button variant="hero" size="sm" className="text-sm px-5" onClick={() => setProjectOpen(true)}>
-              Get Started
+          <div className="hidden lg:flex items-center">
+            <Button variant="hero" className="h-11 px-6 gap-2" onClick={() => setProjectOpen(true)}>
+              Let's Talk <ArrowUpRight size={16} />
             </Button>
           </div>
 
-          <div className="flex md:hidden items-center gap-2">
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-foreground"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden h-10 w-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
 
         <AnimatePresence>
@@ -103,26 +108,28 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden nav-glass border-t border-border/40 overflow-hidden"
+              className="lg:hidden nav-glass overflow-hidden"
             >
-              <div className="px-6 py-6 flex flex-col gap-4">
+              <div className="px-6 py-5 flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <button
                     key={link.label}
                     onClick={() => handleNavClick(link.href)}
-                    className="text-base text-left text-muted-foreground hover:text-foreground transition-colors"
+                    className="rounded-xl px-3 py-2.5 text-base text-left text-foreground/80 hover:bg-secondary transition-colors"
                   >
                     {link.label}
                   </button>
                 ))}
-                <div className="flex gap-3 pt-4">
-                  <Button variant="hero-outline" size="sm" className="flex-1" onClick={() => window.location.href = "mailto:deplorixtechnologies@gmail.com"}>
-                    Contact
-                  </Button>
-                  <Button variant="hero" size="sm" className="flex-1" onClick={() => { setMobileOpen(false); setProjectOpen(true); }}>
-                    Get Started
-                  </Button>
-                </div>
+                <Button
+                  variant="hero"
+                  className="mt-3 h-11 gap-2"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setProjectOpen(true);
+                  }}
+                >
+                  Let's Talk <ArrowUpRight size={16} />
+                </Button>
               </div>
             </motion.div>
           )}

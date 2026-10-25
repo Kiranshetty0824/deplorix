@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Outfit", "system-ui", "-apple-system", "sans-serif"],
-        display: ["Fredoka", "Outfit", "system-ui", "sans-serif"],
-        serif: ["Outfit", "system-ui", "sans-serif"],
+        sans: ["Poppins", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Poppins", "system-ui", "sans-serif"],
+        serif: ["Poppins", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -26,6 +26,8 @@ export default {
           soft: "hsl(var(--brand-soft))",
         },
         ink: "hsl(var(--ink))",
+        peach: "hsl(var(--peach))",
+        ghost: "hsl(var(--ghost))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",

@@ -14,10 +14,10 @@ import projectDesign from "@/assets/project-educonnect.webp";
 import projectEcommerce from "@/assets/project-shopease.webp";
 
 const cardColors = [
-  "bg-blue-50 dark:bg-blue-950/40",
-  "bg-amber-50 dark:bg-amber-950/40",
-  "bg-green-50 dark:bg-green-950/40",
-  "bg-purple-50 dark:bg-purple-950/40",
+  "bg-secondary",
+  "bg-secondary",
+  "bg-secondary",
+  "bg-secondary",
 ];
 
 const projects = [

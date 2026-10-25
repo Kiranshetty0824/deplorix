@@ -8,24 +8,24 @@ const contactLinks = [
     label: "Email Us",
     value: "deplorixtechnologies@gmail.com",
     href: "mailto:deplorixtechnologies@gmail.com",
-    bg: "bg-blue-50 dark:bg-blue-950/40",
-    iconBg: "bg-blue-100 dark:bg-blue-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     value: "DeploriX Technologies",
     href: "https://www.linkedin.com/company/deplorix-technologies/",
-    bg: "bg-teal-50 dark:bg-teal-950/40",
-    iconBg: "bg-teal-100 dark:bg-teal-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     icon: Instagram,
     label: "Instagram",
     value: "@deplorix.tech",
     href: "https://www.instagram.com/deplorix.tech",
-    bg: "bg-orange-50 dark:bg-orange-950/40",
-    iconBg: "bg-orange-100 dark:bg-orange-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
 ];
 
@@ -34,10 +34,10 @@ const ContactSection = () => {
     <section id="contact" className="section-padding bg-surface-elevated">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
+          <span className="pill-label">
             Get in Touch
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-foreground">
             Let's connect
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
