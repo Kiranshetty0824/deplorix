@@ -7,22 +7,22 @@ const features = [
     icon: Zap,
     title: "Lightning Fast",
     description: "We ship products at speed without compromising quality. Agile processes, rapid iteration.",
-    bg: "bg-blue-50 dark:bg-blue-950/40",
-    iconBg: "bg-blue-100 dark:bg-blue-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     icon: Shield,
     title: "Built to Scale",
     description: "Enterprise-grade architecture from day one. Your product grows with your business.",
-    bg: "bg-green-50 dark:bg-green-950/40",
-    iconBg: "bg-green-100 dark:bg-green-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
   {
     icon: Users,
     title: "Human-Centered",
     description: "Every pixel serves a purpose. We design experiences people genuinely love to use.",
-    bg: "bg-purple-50 dark:bg-purple-950/40",
-    iconBg: "bg-purple-100 dark:bg-purple-900/50",
+    bg: "bg-secondary",
+    iconBg: "bg-accent",
   },
 ];
 
