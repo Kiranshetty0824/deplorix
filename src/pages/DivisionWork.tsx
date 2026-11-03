@@ -85,7 +85,9 @@ const DivisionWork = () => {
   if (!division || !extras) return <Navigate to="/404" replace />;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-glow opacity-80" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-grid" aria-hidden />
       <Seo
         title={extras.seo.title}
         description={extras.seo.description}
@@ -94,7 +96,7 @@ const DivisionWork = () => {
       />
       <Navbar />
 
-      <main className="pt-28 md:pt-36 pb-20 px-6 md:px-12 lg:px-20">
+      <main className="relative pt-28 md:pt-36 pb-20 px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl mx-auto">
           <Link
             to="/#products"

@@ -81,7 +81,9 @@ const sections = [
 
 const TermsAndConditions = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-glow opacity-80" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-grid" aria-hidden />
       <div className="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-20">
         <Link
           to="/"
