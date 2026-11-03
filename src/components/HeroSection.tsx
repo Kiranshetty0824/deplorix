@@ -120,24 +120,24 @@ const HeroSection = () => {
             tone="brand"
           />
         </Floating>
-        <Floating className="hidden lg:flex left-6 top-[300px] items-center gap-1" delay={0.8}>
-          <div className="flex items-center gap-2.5 rounded-full bg-primary pl-1.5 pr-5 py-1.5 shadow-[var(--shadow-card)]">
+        <Floating className="hidden lg:block left-6 top-[300px]" delay={0.8}>
+          <div className="relative flex items-center gap-2.5 rounded-full bg-primary pl-1.5 pr-5 py-1.5 shadow-[var(--shadow-card)]">
             <Avatar initials="DT" tone="peach" />
             <div>
               <p className="text-xs font-semibold text-primary-foreground">Deplorix Tech</p>
               <p className="text-[10px] text-primary-foreground/70">Web & app engineering</p>
             </div>
+            <MousePointer2 size={20} className="absolute -top-5 -right-4 fill-foreground text-foreground rotate-[80deg]" />
           </div>
-          <MousePointer2 size={18} className="fill-foreground text-foreground -mt-8 ml-1 -rotate-12" />
         </Floating>
-        <Floating className="hidden lg:flex right-6 top-[310px] items-center gap-1" delay={0.95}>
-          <MousePointer2 size={18} className="fill-brand text-brand -mt-8 mr-1 rotate-[-70deg]" />
-          <div className="flex items-center gap-2.5 rounded-full bg-brand-gradient pl-1.5 pr-5 py-1.5 shadow-[var(--shadow-brand)]">
+        <Floating className="hidden lg:block right-6 top-[310px]" delay={0.95}>
+          <div className="relative flex items-center gap-2.5 rounded-full bg-brand-gradient pl-1.5 pr-5 py-1.5 shadow-[var(--shadow-brand)]">
             <Avatar initials="DP" />
             <div>
               <p className="text-xs font-semibold text-brand-foreground">Deplorix Projects</p>
               <p className="text-[10px] text-brand-foreground/80">Final-year mentors</p>
             </div>
+            <MousePointer2 size={20} className="absolute -top-5 -left-4 fill-brand text-brand" />
           </div>
         </Floating>
 
@@ -172,7 +172,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20, rotate: -2 }}
               animate={{ opacity: 1, y: 0, rotate: -6 }}
               transition={{ duration: 0.9, delay: 1.1, ease }}
-              className="hidden md:block absolute left-1/2 top-[38%] -translate-x-1/2 z-20 w-48 text-left"
+              className="hidden md:block absolute left-1/2 top-[30%] -translate-x-1/2 z-20 w-52 text-left tracking-normal leading-normal"
               aria-hidden
             >
               <span className="block rounded-2xl bg-brand-gradient p-3.5 shadow-[var(--shadow-brand)]">
