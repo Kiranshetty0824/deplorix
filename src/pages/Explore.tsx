@@ -24,7 +24,9 @@ const Explore = () => {
   const work = projectsForDivision(active.id);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-glow opacity-80" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-grid" aria-hidden />
       <Seo
         title="Explore Our Divisions & Work | DeploriX Technologies"
         description="Tap through DeploriX's five divisions on an interactive phone — see what each team builds, the projects we've shipped, and open the full case study."
@@ -32,7 +34,7 @@ const Explore = () => {
       />
       <Navbar />
 
-      <main className="pt-28 md:pt-36 pb-20 px-6 md:px-12 lg:px-20">
+      <main className="relative pt-28 md:pt-36 pb-20 px-6 md:px-12 lg:px-20">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="text-center max-w-2xl mx-auto">
             <span className={type.eyebrow}>Interactive Explorer</span>
