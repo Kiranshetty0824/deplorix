@@ -9,6 +9,9 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import { divisions } from "@/data/divisions";
 import { type } from "@/lib/typography";
 import { trackEvent } from "@/lib/analytics";
+import { useNavigate } from "react-router-dom";
+import { submitEnquiry } from "@/lib/enquiries";
+import { getServiceContext } from "@/lib/service-context";
 
 export const INQUIRY_EVENT = "deplorix:inquiry";
 
@@ -86,6 +89,8 @@ const ServiceInquiryForm = () => {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FormState, boolean>>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -166,25 +171,25 @@ const ServiceInquiryForm = () => {
     }
 
     setSubmitting(true);
+    setSubmitError(null);
     const data = result.data;
     trackEvent("inquiry_form_submit", { division: divisionId, topic: topicFor(divisionId) });
 
-    const subject = encodeURIComponent(`Enquiry — ${topicFor(divisionId)}`);
-    const body = encodeURIComponent(
-      [
-        `Division: ${topicFor(divisionId)}`,
-        `Name: ${data.name}`,
-        `Email: ${data.email}`,
-        `Phone: ${data.phone}`,
-        "",
-        "Details:",
-        data.message,
-        "",
-        `Expected follow-up: ${followUpFor(divisionId)}`,
-      ].join("\n")
-    );
-    window.location.href = `mailto:deplorixtechnologies@gmail.com?subject=${subject}&body=${body}`;
-    window.setTimeout(() => setSubmitting(false), 1500);
+    submitEnquiry({
+      divisionId,
+      topic: topicFor(divisionId),
+      service: getServiceContext().divisionId === divisionId ? getServiceContext().service : null,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      message: data.message,
+      source: "enquiry_form",
+    })
+      .then(() => navigate("/proposal"))
+      .catch((err: Error) => {
+        setSubmitError(err.message);
+        setSubmitting(false);
+      });
   };
 
   const errorText = (field: keyof FormState) =>
@@ -314,10 +319,16 @@ const ServiceInquiryForm = () => {
             </dl>
           </div>
 
+          {submitError && (
+            <p role="alert" className="text-sm text-destructive">
+              {submitError}
+            </p>
+          )}
+
           <Button type="submit" size="lg" disabled={submitting} className="rounded-full gap-2 font-semibold">
             {submitting ? (
               <>
-                <Loader2 size={16} className="animate-spin" /> Opening your email app…
+                <Loader2 size={16} className="animate-spin" /> Sending your request…
               </>
             ) : (
               <>
