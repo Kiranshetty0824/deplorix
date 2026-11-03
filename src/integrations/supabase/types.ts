@@ -14,6 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
+      enquiries: {
+        Row: {
+          admin_notes: string | null
+          created_at: string
+          division_id: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          replied_at: string | null
+          service: string | null
+          source: string
+          status: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string
+          division_id?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          replied_at?: string | null
+          service?: string | null
+          source?: string
+          status?: string
+          topic?: string
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string
+          division_id?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          replied_at?: string | null
+          service?: string | null
+          source?: string
+          status?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       internship_certificates: {
         Row: {
           certificate_id: string
