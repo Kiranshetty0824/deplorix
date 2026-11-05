@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CalendarClock, MousePointer2, Plus } from "lucide-react";
+import { ArrowRight, MousePointer2, Plus } from "lucide-react";
 import StartProjectDialog from "./StartProjectDialog";
 import LogoStrip from "./LogoStrip";
 
@@ -103,20 +103,20 @@ const HeroSection = () => {
         {/* Floating cards (desktop) */}
         <Floating className="hidden lg:block left-0 top-6" delay={0.5}>
           <ProgressCard
-            initials="FF"
-            title="FinFlow Dashboard"
-            started="Kick-off Mon 12 Oct, 2026"
-            step="Sprint 3, Week 2"
-            value={68}
+            initials="CO"
+            title="Collevnto"
+            started="College event platform"
+            step="In development"
+            value={60}
           />
         </Floating>
         <Floating className="hidden lg:block right-0 top-2" delay={0.65} drift={14}>
           <ProgressCard
-            initials="HT"
-            title="HealthTrack Mobile"
-            started="Kick-off Tue 20 Oct, 2026"
-            step="Beta build, Week 4"
-            value={52}
+            initials="TB"
+            title="TruckBook"
+            started="Truck booking app"
+            step="In development"
+            value={45}
             tone="brand"
           />
         </Floating>
@@ -167,26 +167,6 @@ const HeroSection = () => {
             <br />
             In Bangalore.
 
-            {/* Center overlapping appointment card */}
-            <motion.span
-              initial={{ opacity: 0, y: 20, rotate: -2 }}
-              animate={{ opacity: 1, y: 0, rotate: -6 }}
-              transition={{ duration: 0.9, delay: 1.1, ease }}
-              className="hidden md:block absolute left-1/2 top-[30%] -translate-x-1/2 z-20 w-52 text-left tracking-normal leading-normal"
-              aria-hidden
-            >
-              <span className="block rounded-2xl bg-brand-gradient p-3.5 shadow-[var(--shadow-brand)]">
-                <span className="block text-[11px] font-normal text-brand-foreground/85">Scoping call with</span>
-                <span className="block text-base font-semibold text-brand-foreground leading-tight">DeploriX Team</span>
-                <span className="mt-2 flex gap-1.5">
-                  <span className="rounded-full bg-card/95 px-2 py-0.5 text-[10px] font-medium text-foreground">Web App</span>
-                  <span className="rounded-full bg-card/95 px-2 py-0.5 text-[10px] font-medium text-foreground">AI</span>
-                </span>
-              </span>
-              <span className="-mt-1 mx-3 flex items-center gap-1.5 rounded-b-xl bg-card px-3 py-2 text-[12px] font-semibold text-foreground shadow-[var(--shadow-card)]">
-                <CalendarClock size={14} /> 12:00 PM, 7 Nov
-              </span>
-            </motion.span>
           </motion.h1>
 
           <motion.p

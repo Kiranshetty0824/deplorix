@@ -15,7 +15,7 @@ const AdminAuth = () => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate("/admin/certificates", { replace: true });
+      if (data.session) navigate("/admin/enquiries", { replace: true });
     });
   }, [navigate]);
 
@@ -25,7 +25,7 @@ const AdminAuth = () => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (error) return toast.error(error.message);
-    navigate("/admin/certificates", { replace: true });
+    navigate("/admin/enquiries", { replace: true });
   };
 
   return (
@@ -35,7 +35,7 @@ const AdminAuth = () => {
         <div className="max-w-md mx-auto bg-card border border-border rounded-3xl p-8 shadow-[var(--shadow-card)]">
           <h1 className="text-2xl font-bold mb-1">Admin Sign In</h1>
           <p className="text-sm text-muted-foreground mb-6">
-            Sign in to manage internship certificates.
+            Sign in to manage enquiries and certificates.
           </p>
           <form onSubmit={handleSignIn} className="space-y-4">
             <div>
@@ -51,7 +51,7 @@ const AdminAuth = () => {
             </Button>
           </form>
           <p className="text-xs text-muted-foreground mt-6">
-            Only accounts with the admin role can manage certificates.
+            Only accounts with the admin role can access the portal.
           </p>
         </div>
       </main>

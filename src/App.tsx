@@ -11,6 +11,8 @@ import DivisionWork from "./pages/DivisionWork.tsx";
 import Explore from "./pages/Explore.tsx";
 import AdminAuth from "./pages/AdminAuth.tsx";
 import AdminCertificates from "./pages/AdminCertificates.tsx";
+import AdminEnquiries from "./pages/AdminEnquiries.tsx";
+import Proposal from "./pages/Proposal.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/work/:divisionId" element={<DivisionWork />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/admin/login" element={<AdminAuth />} />
+          <Route path="/proposal" element={<Proposal />} />
+          <Route path="/admin/enquiries" element={<AdminEnquiries />} />
           <Route path="/admin/certificates" element={<AdminCertificates />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

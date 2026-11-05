@@ -46,12 +46,13 @@ const socials = [
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground/70 rounded-t-[2rem] mx-3 md:mx-5 mb-0">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20">
+    <footer className="relative overflow-hidden bg-card text-muted-foreground border-t border-border rounded-t-[2rem] mx-3 md:mx-5 mb-0">
+      <div className="pointer-events-none absolute inset-0 bg-glow opacity-60" aria-hidden />
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
           {columns.map((col) => (
             <div key={col.title}>
-              <h4 className="text-xs font-semibold text-primary-foreground/50 tracking-wider mb-4 pb-3 border-b border-primary-foreground/10">
+              <h4 className="text-xs font-semibold text-foreground tracking-wider mb-4 pb-3 border-b border-border">
                 {col.title}
               </h4>
               <ul className="space-y-3">
@@ -60,14 +61,14 @@ const Footer = () => {
                     {"isRoute" in link && link.isRoute ? (
                       <Link
                         to={link.href}
-                        className="text-sm text-primary-foreground/65 hover:text-primary-foreground transition-colors duration-300"
+                        className="text-sm text-muted-foreground hover:text-brand transition-colors duration-300"
                       >
                         {link.label}
                       </Link>
                     ) : (
                       <button
                         onClick={() => handleNavClick(link.href)}
-                        className="text-sm text-primary-foreground/65 hover:text-primary-foreground transition-colors duration-300 text-left"
+                        className="text-sm text-muted-foreground hover:text-brand transition-colors duration-300 text-left"
                       >
                         {link.label}
                       </button>
@@ -79,7 +80,7 @@ const Footer = () => {
           ))}
 
           <div>
-            <h4 className="text-xs font-semibold text-primary-foreground/50 tracking-wider mb-4 pb-3 border-b border-primary-foreground/10">
+            <h4 className="text-xs font-semibold text-foreground tracking-wider mb-4 pb-3 border-b border-border">
               CONNECT
             </h4>
             <div className="flex items-center gap-3">
@@ -90,7 +91,7 @@ const Footer = () => {
                   target={s.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground/70 hover:bg-brand hover:text-brand-foreground transition-all duration-300"
+                  className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-brand hover:text-brand-foreground transition-all duration-300"
                 >
                   <s.icon size={18} />
                 </a>
@@ -99,12 +100,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <a href="#" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-primary-foreground">
+        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+          <a href="#" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
             <img src={logo} alt="DeploriX Technologies logo" className="h-8 w-8 rounded-full bg-card p-1 object-contain" width={32} height={32} />
-            deploriX<span className="text-primary-foreground/45 font-light">technologies</span>
+            deploriX<span className="text-muted-foreground font-light">technologies</span>
           </a>
-          <p className="text-xs text-primary-foreground/45">
+          <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} DeploriX Technologies. All rights reserved.
           </p>
         </div>
