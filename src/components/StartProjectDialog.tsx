@@ -9,6 +9,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { submitEnquiry } from "@/lib/enquiries";
+import { getServiceContext } from "@/lib/service-context";
+import { getDivision } from "@/data/divisions";
 
 interface Props {
   open: boolean;
@@ -18,13 +22,33 @@ interface Props {
 const StartProjectDialog = ({ open, onOpenChange }: Props) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
 
-  const handleSubmit = () => {
-    const subject = encodeURIComponent("New Project Inquiry - DeploriX Technologies");
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}`
-    );
-    window.location.href = `mailto:deplorixtechnologies@gmail.com?subject=${subject}&body=${body}`;
-    onOpenChange(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    setSending(true);
+    setError(null);
+    const ctx = getServiceContext();
+    const division = getDivision(ctx.divisionId);
+    try {
+      await submitEnquiry({
+        divisionId: division?.id ?? "general",
+        topic: division ? `${division.name} — ${division.tagline}` : "New project",
+        service: ctx.service ?? null,
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        message: null,
+        source: "start_project_dialog",
+      });
+      onOpenChange(false);
+      navigate("/proposal");
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -66,13 +90,14 @@ const StartProjectDialog = ({ open, onOpenChange }: Props) => {
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
             />
           </div>
+          {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
           <Button
             onClick={handleSubmit}
             className="w-full"
             size="lg"
-            disabled={!form.name || !form.email || !form.phone}
+            disabled={sending || form.name.trim().length < 2 || !form.email.includes("@") || form.phone.trim().length < 8}
           >
-            Submit Inquiry
+            {sending ? "Sending…" : "Submit Inquiry"}
           </Button>
         </div>
       </DialogContent>

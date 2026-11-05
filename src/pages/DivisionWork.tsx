@@ -127,7 +127,7 @@ const DivisionWork = () => {
           <div className="mt-14 space-y-6">
             {extras.caseStudies.map((cs, i) => (
               <AnimatedSection key={cs.slug} delay={i * 0.08}>
-                <article className="rounded-3xl border border-border/50 bg-surface-elevated p-8 md:p-10">
+                <article className="card-soft p-8 md:p-10">
                   <span className={type.eyebrow}>{cs.type}</span>
                   <h2 className={`mt-2 ${type.displayMd}`}>{cs.title}</h2>
                   <p className={`mt-4 ${type.body}`}>{cs.challenge}</p>

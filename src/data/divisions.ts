@@ -90,7 +90,7 @@ export const divisions = [
     cta: "Have a website or app idea? Let's scope it out.",
     ctaLabel: "Book a Free 20-Minute Scoping Call",
     subject: "Deplorix Tech — Free 20-minute call",
-    bg: "bg-secondary",
+    bg: "bg-card border border-border/70 shadow-[var(--shadow-card)]",
     iconBg: "bg-accent",
   },
   {
@@ -170,7 +170,7 @@ export const divisions = [
     cta: "Ready to build a brand people notice? Let's talk strategy.",
     ctaLabel: "Book a Free 20-Minute Strategy Call",
     subject: "Deplorix Digital — Free 20-minute call",
-    bg: "bg-secondary",
+    bg: "bg-card border border-border/70 shadow-[var(--shadow-card)]",
     iconBg: "bg-accent",
   },
   {
@@ -240,7 +240,7 @@ export const divisions = [
     cta: "Need a final-year project done right? Let's find the right one for you.",
     ctaLabel: "Book a Free 20-Minute Project Call",
     subject: "Deplorix Projects — Free 20-minute call",
-    bg: "bg-secondary",
+    bg: "bg-card border border-border/70 shadow-[var(--shadow-card)]",
     iconBg: "bg-accent",
   },
   {
@@ -320,7 +320,7 @@ export const divisions = [
     cta: "Currently hiring for support or sales roles? See if a dedicated team fits.",
     ctaLabel: "Book a Free 20-Minute Requirement Call",
     subject: "Deplorix Business Process Solutions — Free 20-minute call",
-    bg: "bg-secondary",
+    bg: "bg-card border border-border/70 shadow-[var(--shadow-card)]",
     iconBg: "bg-accent",
   },
   {
@@ -390,7 +390,7 @@ export const divisions = [
     cta: "Want a trained, job-ready team without the ramp-up time? Let's talk.",
     ctaLabel: "Book a Free 20-Minute Training Call",
     subject: "Deplorix Training — Free 20-minute call",
-    bg: "bg-secondary",
+    bg: "bg-card border border-border/70 shadow-[var(--shadow-card)]",
     iconBg: "bg-accent",
   },
 ];
